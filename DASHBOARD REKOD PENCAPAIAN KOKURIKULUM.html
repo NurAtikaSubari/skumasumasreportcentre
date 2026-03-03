@@ -1,28 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms" class="h-full">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title></title>
-	<meta name="generator" content="LibreOffice 25.8.4.2 (Linux)"/>
-	<meta name="created" content="00:00:00"/>
-	<meta name="changed" content="00:00:00"/>
-	<style type="text/css">
-		@page { size: 8.27in 11.69in; margin: 0.79in }
-		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
-		pre { font-size: 10pt; font-family: "Liberation Mono", monospace; background: transparent }
-	</style>
-</head>
-<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;ms&quot; class=&quot;h-full&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot;&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-  &lt;title&gt;Rekod Pencapaian Murid&lt;/title&gt;
-  &lt;script src=&quot;https://cdn.tailwindcss.com/3.4.17&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;/_sdk/data_sdk.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;/_sdk/element_sdk.js&quot;&gt;&lt;/script&gt;
-  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Cinzel:wght@400;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
-  &lt;style&gt;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekod Pencapaian Murid</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
     .font-playfair { font-family: 'Playfair Display', serif; }
     .font-cinzel { font-family: 'Cinzel', serif; }
     .gold-gradient { background: linear-gradient(135deg, #d4af37 0%, #f4e4a6 50%, #d4af37 100%); }
@@ -40,226 +26,226 @@
     .scrollbar-gold::-webkit-scrollbar-track { background: #1a1a1a; }
     .scrollbar-gold::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
     select option { background: #1a1a1a; color: #f4e4a6; }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body class=&quot;h-full bg-black text-amber-100 font-playfair&quot;&gt;
-  &lt;div id=&quot;app&quot; class=&quot;h-full overflow-auto scrollbar-gold&quot; style=&quot;background: radial-gradient(ellipse at top, #1a1a1a 0%, #000000 100%);&quot;&gt;
+  </style>
+</head>
+<body class="h-full bg-black text-amber-100 font-playfair">
+  <div id="app" class="h-full overflow-auto scrollbar-gold" style="background: radial-gradient(ellipse at top, #1a1a1a 0%, #000000 100%);">
     
-    &lt;!-- Header --&gt;
-    &lt;header class=&quot;relative py-8 px-4 text-center border-b gold-border&quot;&gt;
-      &lt;div class=&quot;absolute inset-0 opacity-10&quot; style=&quot;background-image: url('data:image/svg+xml,%3Csvg width=\&quot;60\&quot; height=\&quot;60\&quot; viewBox=\&quot;0 0 60 60\&quot; xmlns=\&quot;http://www.w3.org/2000/svg\&quot;%3E%3Cpath d=\&quot;M30 0L60 30L30 60L0 30L30 0z\&quot; fill=\&quot;%23d4af37\&quot; fill-opacity=\&quot;0.1\&quot;/%3E%3C/svg%3E');&quot;&gt;&lt;/div&gt;
-      &lt;div class=&quot;relative&quot;&gt;
-        &lt;div class=&quot;flex justify-center mb-4&quot;&gt;
-          &lt;svg class=&quot;w-16 h-16 text-amber-400&quot; viewBox=&quot;0 0 100 100&quot; fill=&quot;currentColor&quot;&gt;
-            &lt;path d=&quot;M50 5L61 39H97L68 61L79 95L50 73L21 95L32 61L3 39H39L50 5Z&quot;/&gt;
-          &lt;/svg&gt;
-        &lt;/div&gt;
-        &lt;h1 id=&quot;mainTitle&quot; class=&quot;text-3xl md:text-4xl font-cinzel font-bold gold-text mb-2&quot;&gt;REKOD PENCAPAIAN MURID&lt;/h1&gt;
-        &lt;p id=&quot;mottoText&quot; class=&quot;text-lg md:text-xl text-amber-300 font-cinzel tracking-widest&quot;&gt;SEPAKAT MEMPERKASAKAN KECEMERLANGAN&lt;/p&gt;
-        &lt;p id=&quot;yearDisplay&quot; class=&quot;text-sm text-amber-400/70 mt-2&quot;&gt;Tahun: &lt;span id=&quot;currentYear&quot;&gt;2024&lt;/span&gt;&lt;/p&gt;
-        &lt;div class=&quot;mt-4 flex justify-center gap-2&quot;&gt;
-          &lt;div class=&quot;w-20 h-0.5 gold-gradient&quot;&gt;&lt;/div&gt;
-          &lt;div class=&quot;w-3 h-3 rotate-45 gold-gradient&quot;&gt;&lt;/div&gt;
-          &lt;div class=&quot;w-20 h-0.5 gold-gradient&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/header&gt;
+    <!-- Header -->
+    <header class="relative py-8 px-4 text-center border-b gold-border">
+      <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M30 0L60 30L30 60L0 30L30 0z\" fill=\"%23d4af37\" fill-opacity=\"0.1\"/%3E%3C/svg%3E');"></div>
+      <div class="relative">
+        <div class="flex justify-center mb-4">
+          <svg class="w-16 h-16 text-amber-400" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 5L61 39H97L68 61L79 95L50 73L21 95L32 61L3 39H39L50 5Z"/>
+          </svg>
+        </div>
+        <h1 id="mainTitle" class="text-3xl md:text-4xl font-cinzel font-bold gold-text mb-2">REKOD PENCAPAIAN MURID</h1>
+        <p id="mottoText" class="text-lg md:text-xl text-amber-300 font-cinzel tracking-widest">SEPAKAT MEMPERKASAKAN KECEMERLANGAN</p>
+        <p id="yearDisplay" class="text-sm text-amber-400/70 mt-2">Tahun: <span id="currentYear">2024</span></p>
+        <div class="mt-4 flex justify-center gap-2">
+          <div class="w-20 h-0.5 gold-gradient"></div>
+          <div class="w-3 h-3 rotate-45 gold-gradient"></div>
+          <div class="w-20 h-0.5 gold-gradient"></div>
+        </div>
+      </div>
+    </header>
 
-    &lt;main class=&quot;max-w-7xl mx-auto p-4 md:p-6&quot;&gt;
+    <main class="max-w-7xl mx-auto p-4 md:p-6">
       
-      &lt;!-- Form Section --&gt;
-      &lt;section class=&quot;dark-card rounded-xl p-6 mb-8 border gold-border shadow-2xl&quot;&gt;
-        &lt;h2 class=&quot;text-xl font-cinzel font-semibold gold-text mb-6 flex items-center gap-3&quot;&gt;
-          &lt;svg class=&quot;w-6 h-6 text-amber-400&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z&quot;/&gt;&lt;/svg&gt;
+      <!-- Form Section -->
+      <section class="dark-card rounded-xl p-6 mb-8 border gold-border shadow-2xl">
+        <h2 class="text-xl font-cinzel font-semibold gold-text mb-6 flex items-center gap-3">
+          <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
           Borang Laporan Pencapaian
-        &lt;/h2&gt;
+        </h2>
         
-        &lt;form id=&quot;achievementForm&quot; class=&quot;space-y-6&quot;&gt;
-          &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-4 mb-4&quot;&gt;
+        <form id="achievementForm" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             
-            &lt;!-- Tarikh --&gt;
-            &lt;div&gt;
-              &lt;label for=&quot;tarikh&quot; class=&quot;block text-amber-300 text-sm mb-2 font-semibold&quot;&gt;Tarikh&lt;/label&gt;
-              &lt;input type=&quot;date&quot; id=&quot;tarikh&quot; class=&quot;w-full input-style rounded-lg px-4 py-3&quot; required&gt;
-            &lt;/div&gt;
+            <!-- Tarikh -->
+            <div>
+              <label for="tarikh" class="block text-amber-300 text-sm mb-2 font-semibold">Tarikh</label>
+              <input type="date" id="tarikh" class="w-full input-style rounded-lg px-4 py-3" required>
+            </div>
             
-            &lt;!-- Penganjur --&gt;
-            &lt;div&gt;
-              &lt;label for=&quot;penganjur&quot; class=&quot;block text-amber-300 text-sm mb-2 font-semibold&quot;&gt;Penganjur&lt;/label&gt;
-              &lt;input type=&quot;text&quot; id=&quot;penganjur&quot; placeholder=&quot;Nama penganjur program&quot; class=&quot;w-full input-style rounded-lg px-4 py-3&quot; required&gt;
-            &lt;/div&gt;
+            <!-- Penganjur -->
+            <div>
+              <label for="penganjur" class="block text-amber-300 text-sm mb-2 font-semibold">Penganjur</label>
+              <input type="text" id="penganjur" placeholder="Nama penganjur program" class="w-full input-style rounded-lg px-4 py-3" required>
+            </div>
             
-            &lt;!-- Pencapaian --&gt;
-            &lt;div&gt;
-              &lt;label for=&quot;pencapaian&quot; class=&quot;block text-amber-300 text-sm mb-2 font-semibold&quot;&gt;Pencapaian&lt;/label&gt;
-              &lt;select id=&quot;pencapaian&quot; class=&quot;w-full input-style rounded-lg px-4 py-3&quot; required&gt;
-                &lt;option value=&quot;&quot;&gt;-- Pilih Pencapaian --&lt;/option&gt;
-                &lt;option value=&quot;Johan&quot;&gt;Johan&lt;/option&gt;
-                &lt;option value=&quot;Naib Johan&quot;&gt;Naib Johan&lt;/option&gt;
-                &lt;option value=&quot;Ketiga&quot;&gt;Ketiga&lt;/option&gt;
-                &lt;option value=&quot;Keempat&quot;&gt;Keempat&lt;/option&gt;
-                &lt;option value=&quot;Kelima&quot;&gt;Kelima&lt;/option&gt;
-                &lt;option value=&quot;Saguhati&quot;&gt;Saguhati&lt;/option&gt;
-                &lt;option value=&quot;Penyertaan&quot;&gt;Penyertaan&lt;/option&gt;
-              &lt;/select&gt;
-            &lt;/div&gt;
+            <!-- Pencapaian -->
+            <div>
+              <label for="pencapaian" class="block text-amber-300 text-sm mb-2 font-semibold">Pencapaian</label>
+              <select id="pencapaian" class="w-full input-style rounded-lg px-4 py-3" required>
+                <option value="">-- Pilih Pencapaian --</option>
+                <option value="Johan">Johan</option>
+                <option value="Naib Johan">Naib Johan</option>
+                <option value="Ketiga">Ketiga</option>
+                <option value="Keempat">Keempat</option>
+                <option value="Kelima">Kelima</option>
+                <option value="Saguhati">Saguhati</option>
+                <option value="Penyertaan">Penyertaan</option>
+              </select>
+            </div>
             
-            &lt;!-- Peringkat --&gt;
-            &lt;div&gt;
-              &lt;label for=&quot;peringkat&quot; class=&quot;block text-amber-300 text-sm mb-2 font-semibold&quot;&gt;Peringkat&lt;/label&gt;
-              &lt;select id=&quot;peringkat&quot; class=&quot;w-full input-style rounded-lg px-4 py-3&quot; required&gt;
-                &lt;option value=&quot;&quot;&gt;-- Pilih Peringkat --&lt;/option&gt;
-                &lt;option value=&quot;Zon&quot;&gt;Zon&lt;/option&gt;
-                &lt;option value=&quot;Daerah&quot;&gt;Daerah&lt;/option&gt;
-                &lt;option value=&quot;Negeri&quot;&gt;Negeri&lt;/option&gt;
-                &lt;option value=&quot;Kebangsaan&quot;&gt;Kebangsaan&lt;/option&gt;
-                &lt;option value=&quot;Antarabangsa&quot;&gt;Antarabangsa&lt;/option&gt;
-              &lt;/select&gt;
-            &lt;/div&gt;
+            <!-- Peringkat -->
+            <div>
+              <label for="peringkat" class="block text-amber-300 text-sm mb-2 font-semibold">Peringkat</label>
+              <select id="peringkat" class="w-full input-style rounded-lg px-4 py-3" required>
+                <option value="">-- Pilih Peringkat --</option>
+                <option value="Zon">Zon</option>
+                <option value="Daerah">Daerah</option>
+                <option value="Negeri">Negeri</option>
+                <option value="Kebangsaan">Kebangsaan</option>
+                <option value="Antarabangsa">Antarabangsa</option>
+              </select>
+            </div>
             
-          &lt;/div&gt;
+          </div>
           
-          &lt;!-- Teachers Selection Area --&gt;
-          &lt;div class=&quot;border gold-border rounded-xl p-4 bg-black/30 mb-6&quot;&gt;
-            &lt;h3 class=&quot;text-amber-300 font-semibold mb-4 flex items-center gap-2&quot;&gt;
-              &lt;svg class=&quot;w-5 h-5&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z&quot;/&gt;&lt;/svg&gt;
+          <!-- Teachers Selection Area -->
+          <div class="border gold-border rounded-xl p-4 bg-black/30 mb-6">
+            <h3 class="text-amber-300 font-semibold mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
               Nama Guru (10 ruang)
-            &lt;/h3&gt;
-            &lt;div id=&quot;teacherSelectionArea&quot; class=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3&quot;&gt;
-              &lt;!-- Teacher dropdowns will be generated here --&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
+            </h3>
+            <div id="teacherSelectionArea" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+              <!-- Teacher dropdowns will be generated here -->
+            </div>
+          </div>
           
-          &lt;!-- Student Selection Area --&gt;
-          &lt;div class=&quot;border gold-border rounded-xl p-4 bg-black/30&quot;&gt;
-            &lt;h3 class=&quot;text-amber-300 font-semibold mb-4 flex items-center gap-2&quot;&gt;
-              &lt;svg class=&quot;w-5 h-5&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z&quot;/&gt;&lt;/svg&gt;
+          <!-- Student Selection Area -->
+          <div class="border gold-border rounded-xl p-4 bg-black/30">
+            <h3 class="text-amber-300 font-semibold mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
               Nama Murid (10 ruang)
-            &lt;/h3&gt;
-            &lt;div id=&quot;studentSelectionArea&quot; class=&quot;grid grid-cols-1 lg:grid-cols-2 gap-4&quot;&gt;
-              &lt;!-- Student rows will be generated here --&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
+            </h3>
+            <div id="studentSelectionArea" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <!-- Student rows will be generated here -->
+            </div>
+          </div>
           
-          &lt;!-- Submit Button --&gt;
-          &lt;div class=&quot;flex justify-center pt-6&quot;&gt;
-            &lt;button type=&quot;submit&quot; id=&quot;submitBtn&quot; class=&quot;btn-gold px-10 py-3 rounded-xl text-lg font-cinzel tracking-wide transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-3&quot;&gt;
-              &lt;svg class=&quot;w-5 h-5&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z&quot;/&gt;&lt;/svg&gt;
+          <!-- Submit Button -->
+          <div class="flex justify-center pt-6">
+            <button type="submit" id="submitBtn" class="btn-gold px-10 py-3 rounded-xl text-lg font-cinzel tracking-wide transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-3">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
               Simpan Rekod
-            &lt;/button&gt;
-          &lt;/div&gt;
-        &lt;/form&gt;
-      &lt;/section&gt;
+            </button>
+          </div>
+        </form>
+      </section>
       
-      &lt;!-- Records Table Section --&gt;
-      &lt;section class=&quot;dark-card rounded-xl p-6 border gold-border shadow-2xl&quot;&gt;
-        &lt;div class=&quot;flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4&quot;&gt;
-          &lt;h2 class=&quot;text-xl font-cinzel font-semibold gold-text flex items-center gap-3&quot;&gt;
-            &lt;svg class=&quot;w-6 h-6 text-amber-400&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z&quot;/&gt;&lt;/svg&gt;
+      <!-- Records Table Section -->
+      <section class="dark-card rounded-xl p-6 border gold-border shadow-2xl">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+          <h2 class="text-xl font-cinzel font-semibold gold-text flex items-center gap-3">
+            <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
             Senarai Rekod Pencapaian
-          &lt;/h2&gt;
-          &lt;div id=&quot;recordCount&quot; class=&quot;text-amber-300 text-sm bg-black/50 px-4 py-2 rounded-lg border gold-border&quot;&gt;
-            Jumlah Rekod: &lt;span class=&quot;font-bold text-amber-400&quot;&gt;0&lt;/span&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
+          </h2>
+          <div id="recordCount" class="text-amber-300 text-sm bg-black/50 px-4 py-2 rounded-lg border gold-border">
+            Jumlah Rekod: <span class="font-bold text-amber-400">0</span>
+          </div>
+        </div>
         
-        &lt;div id=&quot;recordsContainer&quot; class=&quot;overflow-x-auto scrollbar-gold&quot;&gt;
-          &lt;div id=&quot;emptyState&quot; class=&quot;text-center py-12 text-amber-400/60&quot;&gt;
-            &lt;svg class=&quot;w-16 h-16 mx-auto mb-4 opacity-50&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z&quot;/&gt;&lt;/svg&gt;
-            &lt;p class=&quot;font-cinzel text-lg&quot;&gt;Tiada rekod pencapaian&lt;/p&gt;
-            &lt;p class=&quot;text-sm mt-2&quot;&gt;Sila tambah rekod menggunakan borang di atas&lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div id=&quot;recordsList&quot; class=&quot;space-y-4 hidden&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/section&gt;
+        <div id="recordsContainer" class="overflow-x-auto scrollbar-gold">
+          <div id="emptyState" class="text-center py-12 text-amber-400/60">
+            <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            <p class="font-cinzel text-lg">Tiada rekod pencapaian</p>
+            <p class="text-sm mt-2">Sila tambah rekod menggunakan borang di atas</p>
+          </div>
+          <div id="recordsList" class="space-y-4 hidden"></div>
+        </div>
+      </section>
       
-    &lt;/main&gt;
+    </main>
     
-    &lt;!-- Footer --&gt;
-    &lt;footer class=&quot;text-center py-6 border-t gold-border mt-8&quot;&gt;
-      &lt;p class=&quot;text-amber-400/60 text-sm font-cinzel&quot;&gt;© 2024 Rekod Pencapaian Murid | Sepakat Memperkasakan Kecemerlangan&lt;/p&gt;
-    &lt;/footer&gt;
+    <!-- Footer -->
+    <footer class="text-center py-6 border-t gold-border mt-8">
+      <p class="text-amber-400/60 text-sm font-cinzel">© 2024 Rekod Pencapaian Murid | Sepakat Memperkasakan Kecemerlangan</p>
+    </footer>
     
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- Delete Confirmation Modal --&gt;
-  &lt;div id=&quot;deleteModal&quot; class=&quot;fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden&quot;&gt;
-    &lt;div class=&quot;dark-card border gold-border rounded-xl p-6 max-w-md mx-4 shadow-2xl&quot;&gt;
-      &lt;h3 class=&quot;text-xl font-cinzel gold-text mb-4&quot;&gt;Sahkan Pemadaman&lt;/h3&gt;
-      &lt;p class=&quot;text-amber-200 mb-6&quot;&gt;Adakah anda pasti mahu memadam rekod ini? Tindakan ini tidak boleh dibatalkan.&lt;/p&gt;
-      &lt;div class=&quot;flex gap-4 justify-end&quot;&gt;
-        &lt;button id=&quot;cancelDelete&quot; class=&quot;px-6 py-2 rounded-lg border gold-border text-amber-300 hover:bg-amber-900/30 transition-colors&quot;&gt;Batal&lt;/button&gt;
-        &lt;button id=&quot;confirmDelete&quot; class=&quot;px-6 py-2 rounded-lg bg-red-900/50 border border-red-500 text-red-300 hover:bg-red-900/70 transition-colors&quot;&gt;Padam&lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+    <div class="dark-card border gold-border rounded-xl p-6 max-w-md mx-4 shadow-2xl">
+      <h3 class="text-xl font-cinzel gold-text mb-4">Sahkan Pemadaman</h3>
+      <p class="text-amber-200 mb-6">Adakah anda pasti mahu memadam rekod ini? Tindakan ini tidak boleh dibatalkan.</p>
+      <div class="flex gap-4 justify-end">
+        <button id="cancelDelete" class="px-6 py-2 rounded-lg border gold-border text-amber-300 hover:bg-amber-900/30 transition-colors">Batal</button>
+        <button id="confirmDelete" class="px-6 py-2 rounded-lg bg-red-900/50 border border-red-500 text-red-300 hover:bg-red-900/70 transition-colors">Padam</button>
+      </div>
+    </div>
+  </div>
 
-  &lt;script&gt;
+  <script>
     // Data Constants
     const TEACHERS = [
-      &quot;A'in Fhatin Hanani binti Rijan&quot;, &quot;Abdul Rahim bin MD Lajim&quot;, &quot;Dzulfadly bin AG Anak&quot;,
-      &quot;Roslianah binti Roie&quot;, &quot;Abdul Rahman bin Taip&quot;, &quot;Ahmad Syazwan bin Saofi&quot;, &quot;Alice Dapith&quot;,
-      &quot;Antoni Riko Boling&quot;, &quot;Arbaena binti Nahang&quot;, &quot;Arfah bin Arase&quot;, &quot;Azmah binti Asha'ari&quot;,
-      &quot;Hjh. Palam binti Karim&quot;, &quot;Diana binti Darno&quot;, &quot;Baiduri binti Dullah&quot;, &quot;Darmin bin Ladiro&quot;,
-      &quot;Dyana Veronica Henry&quot;, &quot;Elly Massalo&quot;, &quot;Sutrawiya binti Malong&quot;, &quot;Fauziah binti Senen&quot;,
-      &quot;Halimahton Saadiah binti Mahamad&quot;, &quot;Hjh. Masni Juitah binti Tuda&quot;, &quot;Juliyana binti Yahya&quot;,
-      &quot;Herna binti Hussin&quot;, &quot;Mahfuzah binti Mohamed Desa&quot;, &quot;Rabiatun binti Rahman&quot;,
-      &quot;Marini binti Syed Ali&quot;, &quot;Marliyana binti Mohammed&quot;, &quot;Merhma binti Masugi&quot;, &quot;Merlyn Loyola&quot;,
-      &quot;Mohammad Farid bin Mohd Arbi&quot;, &quot;Mohd Hasrul bin Mohd Redzuan&quot;, &quot;Mohd Khairul Amir bin Ahmad&quot;,
-      &quot;Mohd Khuzaifah Bin Ismail&quot;, &quot;Mohd Sam bin Talip @ Mohd Isham&quot;, &quot;Azizah binti Haris&quot;,
-      &quot;Muhammad Shahrol Lizam bin Muhammad Khairul Akmal&quot;, &quot;Nor Asidah binti Kalbun&quot;,
-      &quot;Syahmie bin Syahrulhazni&quot;, &quot;Muhammad Admien bin Jasni&quot;, &quot;Mohamad Nurlhafizi bin Abdulnur&quot;,
-      &quot;Noorzalianah binti Insan&quot;, &quot;Nurasyipa binti Ridwan&quot;, &quot;Norhainie binti Herman&quot;,
-      &quot;Nur Anissa binti Roslan&quot;, &quot;Nur Azlin binti Zulkifli&quot;, &quot;Nurhasanah binti Roslan&quot;,
-      &quot;Nurul Aida binti Samsudin&quot;, &quot;Nur Izzah binti Jainudin&quot;, &quot;Auni Nurfarahin binti Aripai&quot;,
-      &quot;Rahman bin Soga&quot;, &quot;Ridhuan bin Arbin&quot;, &quot;Nordin bin Lagudan&quot;, &quot;Hj. Ramsah bin Burhan&quot;,
-      &quot;Misnah binti Miasin&quot;, &quot;Roshaida binti Yeop Ahmad&quot;, &quot;Norliewati Binti Hassan&quot;,
-      &quot;Suhana Binti Sumino&quot;, &quot;Rosharisa binti Herman&quot;, &quot;Hazari bin Hakim&quot;, &quot;Sharon Francis Chuan&quot;,
-      &quot;Mohammad bin Abdul Rajak&quot;, &quot;Rozaimi bin Arshad&quot;, &quot;Salbiah binti Karim&quot;,
-      &quot;Kamisah binti Mohammad&quot;, &quot;Sharif bin Hamdani&quot;, &quot;Siti Nur Syafiah binti Majid&quot;,
-      &quot;Siti Robasiah binti Hj.Rahamat&quot;, &quot;Stevon Luntid&quot;, &quot;Suraya binti Mat Yusop&quot;,
-      &quot;Ummu Nasyibah binti Mamma&quot;, &quot;Wirna binti Abd Hamid&quot;, &quot;Rozinah binti Amirul&quot;,
-      &quot;Junita binti Ajirul&quot;, &quot;Hasbullah bin Ali&quot;
+      "A'in Fhatin Hanani binti Rijan", "Abdul Rahim bin MD Lajim", "Dzulfadly bin AG Anak",
+      "Roslianah binti Roie", "Abdul Rahman bin Taip", "Ahmad Syazwan bin Saofi", "Alice Dapith",
+      "Antoni Riko Boling", "Arbaena binti Nahang", "Arfah bin Arase", "Azmah binti Asha'ari",
+      "Hjh. Palam binti Karim", "Diana binti Darno", "Baiduri binti Dullah", "Darmin bin Ladiro",
+      "Dyana Veronica Henry", "Elly Massalo", "Sutrawiya binti Malong", "Fauziah binti Senen",
+      "Halimahton Saadiah binti Mahamad", "Hjh. Masni Juitah binti Tuda", "Juliyana binti Yahya",
+      "Herna binti Hussin", "Mahfuzah binti Mohamed Desa", "Rabiatun binti Rahman",
+      "Marini binti Syed Ali", "Marliyana binti Mohammed", "Merhma binti Masugi", "Merlyn Loyola",
+      "Mohammad Farid bin Mohd Arbi", "Mohd Hasrul bin Mohd Redzuan", "Mohd Khairul Amir bin Ahmad",
+      "Mohd Khuzaifah Bin Ismail", "Mohd Sam bin Talip @ Mohd Isham", "Azizah binti Haris",
+      "Muhammad Shahrol Lizam bin Muhammad Khairul Akmal", "Nor Asidah binti Kalbun",
+      "Syahmie bin Syahrulhazni", "Muhammad Admien bin Jasni", "Mohamad Nurlhafizi bin Abdulnur",
+      "Noorzalianah binti Insan", "Nurasyipa binti Ridwan", "Norhainie binti Herman",
+      "Nur Anissa binti Roslan", "Nur Azlin binti Zulkifli", "Nurhasanah binti Roslan",
+      "Nurul Aida binti Samsudin", "Nur Izzah binti Jainudin", "Auni Nurfarahin binti Aripai",
+      "Rahman bin Soga", "Ridhuan bin Arbin", "Nordin bin Lagudan", "Hj. Ramsah bin Burhan",
+      "Misnah binti Miasin", "Roshaida binti Yeop Ahmad", "Norliewati Binti Hassan",
+      "Suhana Binti Sumino", "Rosharisa binti Herman", "Hazari bin Hakim", "Sharon Francis Chuan",
+      "Mohammad bin Abdul Rajak", "Rozaimi bin Arshad", "Salbiah binti Karim",
+      "Kamisah binti Mohammad", "Sharif bin Hamdani", "Siti Nur Syafiah binti Majid",
+      "Siti Robasiah binti Hj.Rahamat", "Stevon Luntid", "Suraya binti Mat Yusop",
+      "Ummu Nasyibah binti Mamma", "Wirna binti Abd Hamid", "Rozinah binti Amirul",
+      "Junita binti Ajirul", "Hasbullah bin Ali"
     ].sort();
 
     // Sample students by class
     const STUDENTS_BY_CLASS = {
-      &quot;Prasekolah Exora&quot;: [&quot;Adam bin Ahmad&quot;, &quot;Aisyah binti Ali&quot;, &quot;Amira binti Hassan&quot;, &quot;Danial bin Razak&quot;, &quot;Fatimah binti Yusof&quot;],
-      &quot;Prasekolah Alza&quot;: [&quot;Haikal bin Ismail&quot;, &quot;Irdina binti Kamal&quot;, &quot;Jazmin binti Latif&quot;, &quot;Khairul bin Musa&quot;, &quot;Liana binti Noor&quot;],
-      &quot;Prasekolah Inspira&quot;: [&quot;Mikhail bin Omar&quot;, &quot;Nadia binti Pauzi&quot;, &quot;Qaseh binti Rahman&quot;, &quot;Rayyan bin Samad&quot;, &quot;Sofia binti Tahir&quot;],
-      &quot;1 Inovatif&quot;: [&quot;Ahmad Danial&quot;, &quot;Nur Aisyah&quot;, &quot;Muhammad Aiman&quot;, &quot;Siti Nurhaliza&quot;, &quot;Irfan Hakimi&quot;],
-      &quot;1 Kreatif&quot;: [&quot;Nurul Ain&quot;, &quot;Hafiz Rahman&quot;, &quot;Amira Zulaikha&quot;, &quot;Danish Hakim&quot;, &quot;Puteri Balqis&quot;],
-      &quot;1 Kritis&quot;: [&quot;Arif Budiman&quot;, &quot;Nur Izzati&quot;, &quot;Farhan Imran&quot;, &quot;Aina Sofea&quot;, &quot;Haziq Danial&quot;],
-      &quot;1 Proaktif&quot;: [&quot;Qistina Amani&quot;, &quot;Luqman Hakim&quot;, &quot;Nur Adlina&quot;, &quot;Zafran Hakeem&quot;, &quot;Alya Batrisyia&quot;],
-      &quot;1 Patriotik&quot;: [&quot;Amirul Hakim&quot;, &quot;Nur Syifa&quot;, &quot;Danish Irfan&quot;, &quot;Maisarah Humaira&quot;, &quot;Harraz Darwisy&quot;],
-      &quot;2 Inovatif&quot;: [&quot;Ariana Sofea&quot;, &quot;Uwais Qhafiy&quot;, &quot;Nur Adriana&quot;, &quot;Aisy Danial&quot;, &quot;Qalesya Imani&quot;],
-      &quot;2 Kreatif&quot;: [&quot;Mikail Rayyan&quot;, &quot;Nur Batrisyia&quot;, &quot;Aqil Danish&quot;, &quot;Irdina Safiya&quot;, &quot;Harith Zafran&quot;],
-      &quot;2 Kritis&quot;: [&quot;Alisha Qaisara&quot;, &quot;Muhammad Wafiy&quot;, &quot;Nur Qhalesya&quot;, &quot;Danish Haikal&quot;, &quot;Amni Zahra&quot;],
-      &quot;2 Proaktif&quot;: [&quot;Qayyum Hakimi&quot;, &quot;Nur Aleeya&quot;, &quot;Harraz Mikhail&quot;, &quot;Safiya Adriana&quot;, &quot;Uwais Hadi&quot;],
-      &quot;2 Patriotik&quot;: [&quot;Aisyah Qhaisara&quot;, &quot;Luqman Hazim&quot;, &quot;Nur Irdina&quot;, &quot;Aisy Hakim&quot;, &quot;Qalesya Batrisyia&quot;],
-      &quot;3 Inovatif&quot;: [&quot;Haziq Irfan&quot;, &quot;Nur Amelia&quot;, &quot;Danish Aiman&quot;, &quot;Safiya Nur&quot;, &quot;Arif Danial&quot;],
-      &quot;3 Kreatif&quot;: [&quot;Qistina Nur&quot;, &quot;Muhammad Rayyan&quot;, &quot;Alya Irdina&quot;, &quot;Harith Danish&quot;, &quot;Nur Adriana&quot;],
-      &quot;3 Kritis&quot;: [&quot;Uwais Hakim&quot;, &quot;Batrisyia Amani&quot;, &quot;Aqil Haziq&quot;, &quot;Nur Qalesya&quot;, &quot;Mikail Danish&quot;],
-      &quot;3 Proaktif&quot;: [&quot;Alisha Safiya&quot;, &quot;Danial Wafiy&quot;, &quot;Nur Aisyah&quot;, &quot;Harraz Qayum&quot;, &quot;Irdina Humaira&quot;],
-      &quot;3 Patriotik&quot;: [&quot;Qayyum Danish&quot;, &quot;Nur Alya&quot;, &quot;Aisy Arif&quot;, &quot;Amelia Batrisyia&quot;, &quot;Hakimi Rayyan&quot;],
-      &quot;4 Inovatif&quot;: [&quot;Nur Haziqah&quot;, &quot;Danish Uwais&quot;, &quot;Safiya Irdina&quot;, &quot;Harith Aiman&quot;, &quot;Qalesya Amelia&quot;],
-      &quot;4 Kreatif&quot;: [&quot;Luqman Danish&quot;, &quot;Nur Batrisyia&quot;, &quot;Aqil Rayyan&quot;, &quot;Alisha Nur&quot;, &quot;Mikail Hakimi&quot;],
-      &quot;4 Kritis&quot;: [&quot;Uwais Danial&quot;, &quot;Aisyah Safiya&quot;, &quot;Harraz Irfan&quot;, &quot;Nur Qistina&quot;, &quot;Danish Wafiy&quot;],
-      &quot;4 Proaktif&quot;: [&quot;Qayyum Arif&quot;, &quot;Adriana Amani&quot;, &quot;Haziq Hadi&quot;, &quot;Nur Aleeya&quot;, &quot;Aisy Batrisyia&quot;],
-      &quot;4 Patriotik&quot;: [&quot;Alya Qalesya&quot;, &quot;Muhammad Hazim&quot;, &quot;Irdina Humaira&quot;, &quot;Harith Qayyum&quot;, &quot;Nur Amelia&quot;],
-      &quot;5 Inovatif&quot;: [&quot;Danish Haziq&quot;, &quot;Nur Safiya&quot;, &quot;Uwais Rayyan&quot;, &quot;Batrisyia Adriana&quot;, &quot;Aqil Danish&quot;],
-      &quot;5 Kreatif&quot;: [&quot;Qistina Aisyah&quot;, &quot;Luqman Hakim&quot;, &quot;Alisha Amelia&quot;, &quot;Harraz Danish&quot;, &quot;Nur Irdina&quot;],
-      &quot;5 Kritis&quot;: [&quot;Mikail Arif&quot;, &quot;Amani Qalesya&quot;, &quot;Danish Wafiy&quot;, &quot;Nur Alya&quot;, &quot;Haziq Hakimi&quot;],
-      &quot;5 Proaktif&quot;: [&quot;Uwais Danial&quot;, &quot;Batrisyia Nur&quot;, &quot;Qayyum Irfan&quot;, &quot;Adriana Safiya&quot;, &quot;Aqil Rayyan&quot;],
-      &quot;5 Patriotik&quot;: [&quot;Alisha Irdina&quot;, &quot;Harith Hazim&quot;, &quot;Nur Qistina&quot;, &quot;Danish Aisy&quot;, &quot;Amelia Humaira&quot;],
-      &quot;6 Inovatif&quot;: [&quot;Haziq Danish&quot;, &quot;Safiya Batrisyia&quot;, &quot;Luqman Uwais&quot;, &quot;Nur Adriana&quot;, &quot;Rayyan Hakimi&quot;],
-      &quot;6 Kreatif&quot;: [&quot;Qalesya Amani&quot;, &quot;Muhammad Arif&quot;, &quot;Alya Aisyah&quot;, &quot;Harraz Danial&quot;, &quot;Nur Aleeya&quot;],
-      &quot;6 Kritis&quot;: [&quot;Mikail Danish&quot;, &quot;Irdina Safiya&quot;, &quot;Aqil Haziq&quot;, &quot;Batrisyia Qistina&quot;, &quot;Uwais Wafiy&quot;],
-      &quot;6 Proaktif&quot;: [&quot;Qayyum Rayyan&quot;, &quot;Nur Amelia&quot;, &quot;Danish Hakimi&quot;, &quot;Adriana Alisha&quot;, &quot;Harith Irfan&quot;],
-      &quot;6 Patriotik&quot;: [&quot;Alya Humaira&quot;, &quot;Luqman Danial&quot;, &quot;Safiya Nur&quot;, &quot;Haziq Qayyum&quot;, &quot;Batrisyia Irdina&quot;],
-      &quot;PPKI Dinamik&quot;: [&quot;Ahmad Faris&quot;, &quot;Nur Syahira&quot;, &quot;Danial Hakim&quot;, &quot;Aisyah Amira&quot;, &quot;Irfan Hazim&quot;],
-      &quot;PPKI Fokus&quot;: [&quot;Sofea Adriana&quot;, &quot;Muhammad Rayyan&quot;, &quot;Alya Batrisyia&quot;, &quot;Harraz Danish&quot;, &quot;Qistina Nur&quot;],
-      &quot;PPKI Etika&quot;: [&quot;Uwais Hakimi&quot;, &quot;Nur Irdina&quot;, &quot;Danish Arif&quot;, &quot;Safiya Amelia&quot;, &quot;Qayyum Wafiy&quot;]
+      "Prasekolah Exora": ["Adam bin Ahmad", "Aisyah binti Ali", "Amira binti Hassan", "Danial bin Razak", "Fatimah binti Yusof"],
+      "Prasekolah Alza": ["Haikal bin Ismail", "Irdina binti Kamal", "Jazmin binti Latif", "Khairul bin Musa", "Liana binti Noor"],
+      "Prasekolah Inspira": ["Mikhail bin Omar", "Nadia binti Pauzi", "Qaseh binti Rahman", "Rayyan bin Samad", "Sofia binti Tahir"],
+      "1 Inovatif": ["Ahmad Danial", "Nur Aisyah", "Muhammad Aiman", "Siti Nurhaliza", "Irfan Hakimi"],
+      "1 Kreatif": ["Nurul Ain", "Hafiz Rahman", "Amira Zulaikha", "Danish Hakim", "Puteri Balqis"],
+      "1 Kritis": ["Arif Budiman", "Nur Izzati", "Farhan Imran", "Aina Sofea", "Haziq Danial"],
+      "1 Proaktif": ["Qistina Amani", "Luqman Hakim", "Nur Adlina", "Zafran Hakeem", "Alya Batrisyia"],
+      "1 Patriotik": ["Amirul Hakim", "Nur Syifa", "Danish Irfan", "Maisarah Humaira", "Harraz Darwisy"],
+      "2 Inovatif": ["Ariana Sofea", "Uwais Qhafiy", "Nur Adriana", "Aisy Danial", "Qalesya Imani"],
+      "2 Kreatif": ["Mikail Rayyan", "Nur Batrisyia", "Aqil Danish", "Irdina Safiya", "Harith Zafran"],
+      "2 Kritis": ["Alisha Qaisara", "Muhammad Wafiy", "Nur Qhalesya", "Danish Haikal", "Amni Zahra"],
+      "2 Proaktif": ["Qayyum Hakimi", "Nur Aleeya", "Harraz Mikhail", "Safiya Adriana", "Uwais Hadi"],
+      "2 Patriotik": ["Aisyah Qhaisara", "Luqman Hazim", "Nur Irdina", "Aisy Hakim", "Qalesya Batrisyia"],
+      "3 Inovatif": ["Haziq Irfan", "Nur Amelia", "Danish Aiman", "Safiya Nur", "Arif Danial"],
+      "3 Kreatif": ["Qistina Nur", "Muhammad Rayyan", "Alya Irdina", "Harith Danish", "Nur Adriana"],
+      "3 Kritis": ["Uwais Hakim", "Batrisyia Amani", "Aqil Haziq", "Nur Qalesya", "Mikail Danish"],
+      "3 Proaktif": ["Alisha Safiya", "Danial Wafiy", "Nur Aisyah", "Harraz Qayum", "Irdina Humaira"],
+      "3 Patriotik": ["Qayyum Danish", "Nur Alya", "Aisy Arif", "Amelia Batrisyia", "Hakimi Rayyan"],
+      "4 Inovatif": ["Nur Haziqah", "Danish Uwais", "Safiya Irdina", "Harith Aiman", "Qalesya Amelia"],
+      "4 Kreatif": ["Luqman Danish", "Nur Batrisyia", "Aqil Rayyan", "Alisha Nur", "Mikail Hakimi"],
+      "4 Kritis": ["Uwais Danial", "Aisyah Safiya", "Harraz Irfan", "Nur Qistina", "Danish Wafiy"],
+      "4 Proaktif": ["Qayyum Arif", "Adriana Amani", "Haziq Hadi", "Nur Aleeya", "Aisy Batrisyia"],
+      "4 Patriotik": ["Alya Qalesya", "Muhammad Hazim", "Irdina Humaira", "Harith Qayyum", "Nur Amelia"],
+      "5 Inovatif": ["Danish Haziq", "Nur Safiya", "Uwais Rayyan", "Batrisyia Adriana", "Aqil Danish"],
+      "5 Kreatif": ["Qistina Aisyah", "Luqman Hakim", "Alisha Amelia", "Harraz Danish", "Nur Irdina"],
+      "5 Kritis": ["Mikail Arif", "Amani Qalesya", "Danish Wafiy", "Nur Alya", "Haziq Hakimi"],
+      "5 Proaktif": ["Uwais Danial", "Batrisyia Nur", "Qayyum Irfan", "Adriana Safiya", "Aqil Rayyan"],
+      "5 Patriotik": ["Alisha Irdina", "Harith Hazim", "Nur Qistina", "Danish Aisy", "Amelia Humaira"],
+      "6 Inovatif": ["Haziq Danish", "Safiya Batrisyia", "Luqman Uwais", "Nur Adriana", "Rayyan Hakimi"],
+      "6 Kreatif": ["Qalesya Amani", "Muhammad Arif", "Alya Aisyah", "Harraz Danial", "Nur Aleeya"],
+      "6 Kritis": ["Mikail Danish", "Irdina Safiya", "Aqil Haziq", "Batrisyia Qistina", "Uwais Wafiy"],
+      "6 Proaktif": ["Qayyum Rayyan", "Nur Amelia", "Danish Hakimi", "Adriana Alisha", "Harith Irfan"],
+      "6 Patriotik": ["Alya Humaira", "Luqman Danial", "Safiya Nur", "Haziq Qayyum", "Batrisyia Irdina"],
+      "PPKI Dinamik": ["Ahmad Faris", "Nur Syahira", "Danial Hakim", "Aisyah Amira", "Irfan Hazim"],
+      "PPKI Fokus": ["Sofea Adriana", "Muhammad Rayyan", "Alya Batrisyia", "Harraz Danish", "Qistina Nur"],
+      "PPKI Etika": ["Uwais Hakimi", "Nur Irdina", "Danish Arif", "Safiya Amelia", "Qayyum Wafiy"]
     };
 
     // State
@@ -269,13 +255,13 @@
 
     // Default config
     const defaultConfig = {
-      main_title: &quot;REKOD PENCAPAIAN MURID&quot;,
-      motto_text: &quot;SEPAKAT MEMPERKASAKAN KECEMERLANGAN&quot;,
-      background_color: &quot;#000000&quot;,
-      surface_color: &quot;#1a1a1a&quot;,
-      text_color: &quot;#fef3c7&quot;,
-      primary_action: &quot;#d4af37&quot;,
-      secondary_action: &quot;#b8962e&quot;
+      main_title: "REKOD PENCAPAIAN MURID",
+      motto_text: "SEPAKAT MEMPERKASAKAN KECEMERLANGAN",
+      background_color: "#000000",
+      surface_color: "#1a1a1a",
+      text_color: "#fef3c7",
+      primary_action: "#d4af37",
+      secondary_action: "#b8962e"
     };
 
     // Check and clean old records
@@ -284,14 +270,14 @@
       const currentYearValue = today.getFullYear();
       
       // Filter records from current year only
-      const oldRecords = records.filter(record =&gt; record.year !== currentYearValue.toString());
+      const oldRecords = records.filter(record => record.year !== currentYearValue.toString());
       
       // Delete old records
       for (const record of oldRecords) {
         await window.dataSdk.delete(record);
       }
       
-      if (oldRecords.length &gt; 0) {
+      if (oldRecords.length > 0) {
         showToast(`${oldRecords.length} rekod tahun lepas telah dipadamkan secara automatik.`, 'success');
       }
     }
@@ -301,7 +287,7 @@
       const container = document.getElementById('teacherSelectionArea');
       container.innerHTML = '';
       
-      for (let i = 1; i &lt;= 10; i++) {
+      for (let i = 1; i <= 10; i++) {
         const div = document.createElement('div');
         div.className = 'flex items-center gap-2 bg-black/20 p-2 rounded-lg';
         
@@ -320,7 +306,7 @@
         defaultOption.textContent = '-- Pilih Guru --';
         select.appendChild(defaultOption);
         
-        TEACHERS.forEach(teacher =&gt; {
+        TEACHERS.forEach(teacher => {
           const option = document.createElement('option');
           option.value = teacher;
           option.textContent = teacher;
@@ -338,7 +324,7 @@
       const container = document.getElementById('studentSelectionArea');
       container.innerHTML = '';
       
-      for (let i = 1; i &lt;= 10; i++) {
+      for (let i = 1; i <= 10; i++) {
         const rowDiv = document.createElement('div');
         rowDiv.className = 'flex items-center gap-3 bg-black/20 p-4 rounded-lg border border-amber-900/40';
         
@@ -363,7 +349,7 @@
         classSelect.appendChild(classDefaultOption);
         
         // Populate class options
-        Object.keys(STUDENTS_BY_CLASS).forEach(kelas =&gt; {
+        Object.keys(STUDENTS_BY_CLASS).forEach(kelas => {
           const option = document.createElement('option');
           option.value = kelas;
           option.textContent = kelas;
@@ -413,19 +399,19 @@
       
       container.innerHTML = '';
       
-      records.forEach((record, index) =&gt; {
+      records.forEach((record, index) => {
         const teachers = [];
-        for (let i = 1; i &lt;= 10; i++) {
+        for (let i = 1; i <= 10; i++) {
           const teacher = record[`guru${i}`];
-          if (teacher &amp;&amp; teacher.trim() !== '') {
+          if (teacher && teacher.trim() !== '') {
             teachers.push(teacher);
           }
         }
         
         const students = [];
-        for (let i = 1; i &lt;= 10; i++) {
+        for (let i = 1; i <= 10; i++) {
           const student = record[`murid${i}`];
-          if (student &amp;&amp; student.trim() !== '') {
+          if (student && student.trim() !== '') {
             students.push(student);
           }
         }
@@ -433,49 +419,49 @@
         const card = document.createElement('div');
         card.className = 'bg-black/40 border gold-border rounded-xl p-4 hover:bg-black/60 transition-colors';
         card.innerHTML = `
-          &lt;div class=&quot;flex flex-col lg:flex-row justify-between gap-4&quot;&gt;
-            &lt;div class=&quot;flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3&quot;&gt;
-              &lt;div&gt;
-                &lt;span class=&quot;text-amber-400/70 text-xs&quot;&gt;Tarikh&lt;/span&gt;
-                &lt;p class=&quot;text-amber-100&quot;&gt;${formatDate(record.tarikh)}&lt;/p&gt;
-              &lt;/div&gt;
-              &lt;div&gt;
-                &lt;span class=&quot;text-amber-400/70 text-xs&quot;&gt;Penganjur&lt;/span&gt;
-                &lt;p class=&quot;text-amber-100&quot;&gt;${record.penganjur || '-'}&lt;/p&gt;
-              &lt;/div&gt;
-              &lt;div&gt;
-                &lt;span class=&quot;text-amber-400/70 text-xs&quot;&gt;Pencapaian&lt;/span&gt;
-                &lt;p class=&quot;text-amber-100 font-semibold&quot;&gt;
-                  &lt;span class=&quot;inline-block px-2 py-1 rounded text-xs ${record.pencapaian === 'Johan' ? 'bg-amber-500/30 text-amber-300' : 'bg-amber-900/30 text-amber-400'}&quot;&gt;${record.pencapaian || '-'}&lt;/span&gt;
-                &lt;/p&gt;
-              &lt;/div&gt;
-              &lt;div&gt;
-                &lt;span class=&quot;text-amber-400/70 text-xs&quot;&gt;Peringkat&lt;/span&gt;
-                &lt;p class=&quot;text-amber-100&quot;&gt;${record.peringkat || '-'}&lt;/p&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;flex items-start gap-2&quot;&gt;
-              &lt;button onclick=&quot;showDeleteModal('${record.__backendId}')&quot; class=&quot;btn-delete px-3 py-2 rounded-lg text-sm flex items-center gap-1 transition-colors&quot;&gt;
-                &lt;svg class=&quot;w-4 h-4&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z&quot;/&gt;&lt;/svg&gt;
+          <div class="flex flex-col lg:flex-row justify-between gap-4">
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div>
+                <span class="text-amber-400/70 text-xs">Tarikh</span>
+                <p class="text-amber-100">${formatDate(record.tarikh)}</p>
+              </div>
+              <div>
+                <span class="text-amber-400/70 text-xs">Penganjur</span>
+                <p class="text-amber-100">${record.penganjur || '-'}</p>
+              </div>
+              <div>
+                <span class="text-amber-400/70 text-xs">Pencapaian</span>
+                <p class="text-amber-100 font-semibold">
+                  <span class="inline-block px-2 py-1 rounded text-xs ${record.pencapaian === 'Johan' ? 'bg-amber-500/30 text-amber-300' : 'bg-amber-900/30 text-amber-400'}">${record.pencapaian || '-'}</span>
+                </p>
+              </div>
+              <div>
+                <span class="text-amber-400/70 text-xs">Peringkat</span>
+                <p class="text-amber-100">${record.peringkat || '-'}</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-2">
+              <button onclick="showDeleteModal('${record.__backendId}')" class="btn-delete px-3 py-2 rounded-lg text-sm flex items-center gap-1 transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                 Padam
-              &lt;/button&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-          ${teachers.length &gt; 0 ? `
-          &lt;div class=&quot;mt-3 pt-3 border-t border-amber-900/30&quot;&gt;
-            &lt;span class=&quot;text-amber-400/70 text-xs&quot;&gt;Guru&lt;/span&gt;
-            &lt;div class=&quot;flex flex-wrap gap-2 mt-1&quot;&gt;
-              ${teachers.map(t =&gt; `&lt;span class=&quot;px-2 py-1 bg-amber-900/20 rounded text-sm text-amber-200&quot;&gt;${t}&lt;/span&gt;`).join('')}
-            &lt;/div&gt;
-          &lt;/div&gt;
+              </button>
+            </div>
+          </div>
+          ${teachers.length > 0 ? `
+          <div class="mt-3 pt-3 border-t border-amber-900/30">
+            <span class="text-amber-400/70 text-xs">Guru</span>
+            <div class="flex flex-wrap gap-2 mt-1">
+              ${teachers.map(t => `<span class="px-2 py-1 bg-amber-900/20 rounded text-sm text-amber-200">${t}</span>`).join('')}
+            </div>
+          </div>
           ` : ''}
-          ${students.length &gt; 0 ? `
-          &lt;div class=&quot;mt-2 pt-2 border-t border-amber-900/30&quot;&gt;
-            &lt;span class=&quot;text-amber-400/70 text-xs&quot;&gt;Murid&lt;/span&gt;
-            &lt;div class=&quot;flex flex-wrap gap-2 mt-1&quot;&gt;
-              ${students.map(s =&gt; `&lt;span class=&quot;px-2 py-1 bg-amber-900/20 rounded text-sm text-amber-200&quot;&gt;${s}&lt;/span&gt;`).join('')}
-            &lt;/div&gt;
-          &lt;/div&gt;
+          ${students.length > 0 ? `
+          <div class="mt-2 pt-2 border-t border-amber-900/30">
+            <span class="text-amber-400/70 text-xs">Murid</span>
+            <div class="flex flex-wrap gap-2 mt-1">
+              ${students.map(s => `<span class="px-2 py-1 bg-amber-900/20 rounded text-sm text-amber-200">${s}</span>`).join('')}
+            </div>
+          </div>
           ` : ''}
         `;
         container.appendChild(card);
@@ -498,7 +484,7 @@
     async function deleteRecord() {
       if (!recordToDelete) return;
       
-      const record = records.find(r =&gt; r.__backendId === recordToDelete);
+      const record = records.find(r => r.__backendId === recordToDelete);
       if (!record) {
         hideDeleteModal();
         return;
@@ -526,9 +512,9 @@
       toast.textContent = message;
       document.body.appendChild(toast);
       
-      setTimeout(() =&gt; {
+      setTimeout(() => {
         toast.style.opacity = '0';
-        setTimeout(() =&gt; toast.remove(), 300);
+        setTimeout(() => toast.remove(), 300);
       }, 3000);
     }
 
@@ -536,14 +522,14 @@
     async function handleSubmit(e) {
       e.preventDefault();
       
-      if (records.length &gt;= 999) {
+      if (records.length >= 999) {
         showToast('Had maksimum 999 rekod telah dicapai. Sila padam rekod lama.', 'error');
         return;
       }
       
       const submitBtn = document.getElementById('submitBtn');
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '&lt;svg class=&quot;w-5 h-5 animate-spin&quot; fill=&quot;none&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle class=&quot;opacity-25&quot; cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;4&quot;&gt;&lt;/circle&gt;&lt;path class=&quot;opacity-75&quot; fill=&quot;currentColor&quot; d=&quot;M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z&quot;&gt;&lt;/path&gt;&lt;/svg&gt; Menyimpan...';
+      submitBtn.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Menyimpan...';
       
       const formData = {
         id: Date.now().toString(),
@@ -578,7 +564,7 @@
       const result = await window.dataSdk.create(formData);
       
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '&lt;svg class=&quot;w-5 h-5&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z&quot;/&gt;&lt;/svg&gt; Simpan Rekod';
+      submitBtn.innerHTML = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Simpan Rekod';
       
       if (result.isOk) {
         showToast('Rekod berjaya disimpan!');
@@ -593,7 +579,7 @@
     // Data handler
     const dataHandler = {
       onDataChanged(data) {
-        records = data.sort((a, b) =&gt; new Date(b.createdAt) - new Date(a.createdAt));
+        records = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         renderRecords();
       }
     };
@@ -625,21 +611,21 @@
         window.elementSdk.init({
           defaultConfig,
           onConfigChange,
-          mapToCapabilities: (config) =&gt; ({
+          mapToCapabilities: (config) => ({
             recolorables: [
-              { get: () =&gt; config.background_color || defaultConfig.background_color, set: (v) =&gt; window.elementSdk.setConfig({ background_color: v }) },
-              { get: () =&gt; config.surface_color || defaultConfig.surface_color, set: (v) =&gt; window.elementSdk.setConfig({ surface_color: v }) },
-              { get: () =&gt; config.text_color || defaultConfig.text_color, set: (v) =&gt; window.elementSdk.setConfig({ text_color: v }) },
-              { get: () =&gt; config.primary_action || defaultConfig.primary_action, set: (v) =&gt; window.elementSdk.setConfig({ primary_action: v }) },
-              { get: () =&gt; config.secondary_action || defaultConfig.secondary_action, set: (v) =&gt; window.elementSdk.setConfig({ secondary_action: v }) }
+              { get: () => config.background_color || defaultConfig.background_color, set: (v) => window.elementSdk.setConfig({ background_color: v }) },
+              { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => window.elementSdk.setConfig({ surface_color: v }) },
+              { get: () => config.text_color || defaultConfig.text_color, set: (v) => window.elementSdk.setConfig({ text_color: v }) },
+              { get: () => config.primary_action || defaultConfig.primary_action, set: (v) => window.elementSdk.setConfig({ primary_action: v }) },
+              { get: () => config.secondary_action || defaultConfig.secondary_action, set: (v) => window.elementSdk.setConfig({ secondary_action: v }) }
             ],
             borderables: [],
             fontEditable: undefined,
             fontSizeable: undefined
           }),
-          mapToEditPanelValues: (config) =&gt; new Map([
-            [&quot;main_title&quot;, config.main_title || defaultConfig.main_title],
-            [&quot;motto_text&quot;, config.motto_text || defaultConfig.motto_text]
+          mapToEditPanelValues: (config) => new Map([
+            ["main_title", config.main_title || defaultConfig.main_title],
+            ["motto_text", config.motto_text || defaultConfig.motto_text]
           ])
         });
       }
@@ -657,8 +643,6 @@
     }
 
     init();
-  &lt;/script&gt;
-&lt;script&gt;(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML=&quot;window.__CF$cv$params={r:'9d26e8cab3a1a483',t:'MTc3MTg1MTY2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);&quot;;b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&amp;&amp;(document.onreadystatechange=e,c())}}}})();&lt;/script&gt;&lt;/body&gt;
-&lt;/html&gt;</pre>
-</body>
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d26e8cab3a1a483',t:'MTc3MTg1MTY2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
