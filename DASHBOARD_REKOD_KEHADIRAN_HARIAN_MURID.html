@@ -230,14 +230,21 @@
     };
 
     function initTeacherDropdown() {
-      const select = document.getElementById('teacher-select');
-      teachers.forEach(teacher => {
-        const option = document.createElement('option');
-        option.value = teacher;
-        option.textContent = teacher;
-        select.appendChild(option);
-      });
-    }
+  const select = document.getElementById('teacher-select');
+  select.innerHTML = '<option value="">-- Pilih Guru --</option>'; // reset
+
+  teachers.forEach(teacher => {
+    const option = document.createElement('option');
+    option.value = teacher;
+    option.textContent = teacher;
+    select.appendChild(option);
+  });
+}
+
+function initClassDropdown() {
+  const select = document.getElementById('class-select');
+  // Optional: you can dynamically populate from studentLists if needed
+}
 
     function initClassFilter() {
       const select = document.getElementById('filter-class');
@@ -341,46 +348,33 @@
 
     function renderStudents() {
   const selectedClass = document.getElementById('class-select').value;
-  const container = document.getElementById('students-container');
-  const noClassMessage = document.getElementById('no-class-message');
-  const studentsList = document.getElementById('students-list');
+  const container = document.getElementById('laporan-container');
+  container.innerHTML = ''; // clear previous
 
-  // No class selected
-  if (!selectedClass) {
-    container.classList.add('hidden');
-    noClassMessage.classList.remove('hidden');
+  if (!selectedClass || !studentLists[selectedClass]) {
+    container.innerHTML = '<p class="text-gray-500 py-4 text-center">Sila pilih kelas untuk lihat murid</p>';
     currentAttendance = {};
     return;
   }
 
-  noClassMessage.classList.add('hidden');
-  container.classList.remove('hidden');
+  const students = studentLists[selectedClass];
+  currentAttendance = currentAttendance || {};
 
-  const students = studentLists[selectedClass] || [];
-
-  // No students in class
-  if (students.length === 0) {
-    studentsList.innerHTML = '<div class="text-center py-8 text-gray-500">Tiada data murid untuk kelas ini</div>';
-    return;
-  }
-
-  // Render each student
-  studentsList.innerHTML = students.map((student, idx) => {
-    const status = currentAttendance[idx] || 'unmarked'; // unmarked / present / absent
-    const statusClass = status === 'present' ? 'present' : status === 'absent' ? 'absent' : '';
+  container.innerHTML = students.map((student, idx) => {
+    const status = currentAttendance[idx] || 'unmarked';
     const statusEmoji = status === 'present' ? '✅' : status === 'absent' ? '❌' : '⭕';
 
     return `
-      <div class="student-item ${statusClass} border rounded-lg p-3 flex items-center justify-between cursor-pointer hover:border-yellow-400/50" 
+      <div class="student-item border rounded-lg p-3 flex items-center justify-between cursor-pointer hover:border-yellow-400/50"
            onclick="toggleAttendance(${idx})">
-        <div class="flex-1 text-sm"><span>${student}</span></div>
+        <div class="flex-1 text-sm">${student}</div>
         <span class="text-xl">${statusEmoji}</span>
       </div>
     `;
   }).join('');
-
-  updateStudentStats(students.length);
 }
+  document.getElementById('class-select').addEventListener('change', renderStudents);
+  document.getElementById('murid-form').addEventListener('submit', handleSubmit);
 
     function toggleAttendance(idx) {
       const status = currentAttendance[idx] || 'unmarked';
