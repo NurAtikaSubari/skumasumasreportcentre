@@ -78,6 +78,23 @@ setupForm("record-form", "rekodKawalanKelas", [
   { id: "remarks" },
 ]);
 
+// ================================
+// 3️⃣ Borang Rekod Pemantauan Sesi PDP
+// ================================
+setupForm("pemantauanPDPForm", "pemantauan_PDP", [
+  { id: "nama-pentadbir-pdp" },
+  { id: "tarikh-pdp" },
+  { id: "masa-pdp" },
+  { id: "hari-pdp" },
+  { id: "kelas-pdp" },
+  { id: "subjek-pdp" },
+  { id: "nama-guru-dipantau" },
+  { id: "fokus-pemantauan" },
+  { name: "gred_pdp" },
+  { name: "gred_rph" },
+  { name: "gred_buku_latihan" },
+  { id: "ulasan-cadangan-pdp" },
+]);
 
 // ================================
 // 2️⃣ Kehadiran Kokurikulum Form
