@@ -89,7 +89,7 @@ setupForm("formPencapaianMurid", "Pencapaian_Murid", [
 // ================================
 // 4️⃣ Pemantauan PDP – GB/PKanan Form
 // ================================
-setupForm("laporanGBPKForm", "Laporan_Pemantauan_GB/PKanan", [
+setupForm("laporanGBPKForm", "laporanGBPK", [
   { id: "nama-pemantau" },
   { id: "tarikh-gbpk" },
   { id: "hari-gbpk" },
