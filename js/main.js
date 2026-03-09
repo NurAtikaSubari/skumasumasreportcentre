@@ -64,6 +64,22 @@ setupForm("formKawalanKelas", "Kawalan_Kelas", [
 ]);
 
 // ================================
+//  2️⃣ Kawalan Kelas Form
+// ================================
+setupForm("record-form", "rekodKawalanKelas", [
+  { id: "teacher" },
+  { id: "subject" },
+  { id: "class-select" },
+  { id: "date" },
+  { id: "student-count" },
+  { id: "time-in" },
+  { id: "time-out" },
+  { id: "discipline-remarks" },
+  { id: "remarks" },
+]);
+
+
+// ================================
 // 2️⃣ Kehadiran Kokurikulum Form
 // ================================
 setupForm("formKehadiranKokurikulum", "Kehadiran_Kokurikulum", [
