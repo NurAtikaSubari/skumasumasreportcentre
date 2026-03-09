@@ -97,6 +97,123 @@ setupForm("pemantauanPDPForm", "pemantauanPDP", [
 ]);
 
 // ================================
+// 4️⃣ Rekod Kehadiran Harian Murid - main.js
+// ================================
+
+// 1️⃣ Setup form for Google Sheets
+setupForm("murid-form", "rekodKehadiranMurid", [
+  { id: "teacher-select" },
+  { id: "date-input" },
+  { id: "class-select" },
+  { id: "notes-input" },
+  { 
+    id: "students-list",
+    type: "checkbox-list",
+    getValue: () => {
+      const studentDivs = document.querySelectorAll("#students-list .student-row");
+      const attendance = {};
+      studentDivs.forEach((div, index) => {
+        attendance[index] = div.dataset.status || "absent"; // default absent
+      });
+      return JSON.stringify(attendance);
+    }
+  }
+]);
+
+// 2️⃣ Populate students when class changes
+const classSelect = document.getElementById("class-select");
+const studentsContainer = document.getElementById("students-container");
+const studentsListDiv = document.getElementById("students-list");
+const noClassMessage = document.getElementById("no-class-message");
+const totalStudentsCount = document.getElementById("total-students-count");
+const presentCount = document.getElementById("present-count");
+const markAllPresentBtn = document.getElementById("mark-all-present");
+const markAllAbsentBtn = document.getElementById("mark-all-absent");
+
+classSelect.addEventListener("change", () => {
+  const selectedClass = classSelect.value;
+  if (!selectedClass || !studentLists[selectedClass]) {
+    studentsContainer.classList.add("hidden");
+    noClassMessage.classList.remove("hidden");
+    return;
+  }
+
+  studentsListDiv.innerHTML = "";
+  studentLists[selectedClass].forEach(name => {
+    const div = document.createElement("div");
+    div.classList.add("student-row", "flex", "items-center", "justify-between", "p-2", "rounded-lg", "bg-gray-900/50");
+    div.dataset.status = "absent";
+
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = name;
+
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = "❌"; // default absent
+    toggleBtn.classList.add("px-3", "py-1", "rounded-lg", "bg-red-900/30", "text-red-400", "hover:bg-red-900/50");
+    toggleBtn.addEventListener("click", () => {
+      if (div.dataset.status === "present") {
+        div.dataset.status = "absent";
+        toggleBtn.textContent = "❌";
+        toggleBtn.classList.replace("bg-green-900/30", "bg-red-900/30");
+        toggleBtn.classList.replace("text-green-400", "text-red-400");
+      } else {
+        div.dataset.status = "present";
+        toggleBtn.textContent = "✅";
+        toggleBtn.classList.replace("bg-red-900/30", "bg-green-900/30");
+        toggleBtn.classList.replace("text-red-400", "text-green-400");
+      }
+      updateCounts();
+    });
+
+    div.appendChild(nameSpan);
+    div.appendChild(toggleBtn);
+    studentsListDiv.appendChild(div);
+  });
+
+  totalStudentsCount.textContent = studentLists[selectedClass].length;
+  studentsContainer.classList.remove("hidden");
+  noClassMessage.classList.add("hidden");
+  updateCounts();
+});
+
+// 3️⃣ Mark All Present / Absent buttons
+markAllPresentBtn.addEventListener("click", () => {
+  document.querySelectorAll("#students-list .student-row").forEach(div => {
+    div.dataset.status = "present";
+    const btn = div.querySelector("button");
+    btn.textContent = "✅";
+    btn.classList.replace("bg-red-900/30", "bg-green-900/30");
+    btn.classList.replace("text-red-400", "text-green-400");
+  });
+  updateCounts();
+});
+
+markAllAbsentBtn.addEventListener("click", () => {
+  document.querySelectorAll("#students-list .student-row").forEach(div => {
+    div.dataset.status = "absent";
+    const btn = div.querySelector("button");
+    btn.textContent = "❌";
+    btn.classList.replace("bg-green-900/30", "bg-red-900/30");
+    btn.classList.replace("text-green-400", "text-red-400");
+  });
+  updateCounts();
+});
+
+// 4️⃣ Update attendance counts
+function updateCounts() {
+  const rows = document.querySelectorAll("#students-list .student-row");
+  const present = Array.from(rows).filter(r => r.dataset.status === "present").length;
+  presentCount.textContent = present;
+}
+
+// 5️⃣ Form submit
+document.getElementById("murid-form").addEventListener("submit", e => {
+  e.preventDefault();
+  submitForm("murid-form");
+});
+
+
+// ================================
 // 2️⃣ Kehadiran Kokurikulum Form
 // ================================
 setupForm("formKehadiranKokurikulum", "Kehadiran_Kokurikulum", [
