@@ -99,147 +99,76 @@ setupForm("pemantauanPDPForm", "pemantauanPDP", [
 // ================================
 // 4️⃣ Rekod Kehadiran Harian Murid 
 // ================================
-// ================================
-// main.js - Rekod Kehadiran Murid
-// ================================
+const SHEET_HEADERS = [
+  "Tarikh",
+  "Guru",
+  "Kelas",
+  "Catatan",
+  "Hadir",
+  "Jumlah Tidak Hadir",
+  "Senarai Tidak Hadir"
+];
 
-const teachers = ["A'in Fhatin Hanani binti Rijan", "Guru 2", "Guru 3"]; // add all teachers here
-
-const studentLists = {
-  "Prasekolah Exora": ["Murid A", "Murid B"], // fill all classes
-  "5 Inovatif": ["ADAM BIN MOHAMMAD", "AFFIQ HAKIMI BIN HERWIN", "AHMAD AL AIDIL BIN AHMAD SHARIZAL"]
-  // ... fill rest as in your HTML
-};
-
-const teacherSelect = document.getElementById("teacher-select");
-teachers.forEach(g => {
-  const opt = document.createElement("option");
-  opt.value = g; opt.textContent = g;
-  teacherSelect.appendChild(opt);
-});
-
-const classSelect = document.getElementById("class-select");
-const studentsContainer = document.getElementById("students-container");
-const studentsListEl = document.getElementById("students-list");
-const noClassMessage = document.getElementById("no-class-message");
-const presentCountEl = document.getElementById("present-count");
-const totalStudentsCountEl = document.getElementById("total-students-count");
-const recordsTable = document.getElementById("records-table");
-const notesInput = document.getElementById("notes-input");
-
-let currentClass = "";
-let studentCheckboxes = [];
-
-// Display students when class is selected
-classSelect.addEventListener("change", () => {
-  currentClass = classSelect.value;
-  const students = studentLists[currentClass] || [];
-  studentsListEl.innerHTML = "";
-  studentCheckboxes = [];
-  if(students.length === 0){
-    studentsContainer.classList.add("hidden");
-    noClassMessage.classList.remove("hidden");
-    return;
-  }
-  studentsContainer.classList.remove("hidden");
-  noClassMessage.classList.add("hidden");
-
-  students.forEach((name, idx) => {
-    const div = document.createElement("div");
-    div.className = "student-item border p-2 rounded-lg flex justify-between items-center";
-    div.innerHTML = `
-      <span>${name}</span>
-      <input type="checkbox" data-idx="${idx}" class="present-checkbox" />
-    `;
-    studentsListEl.appendChild(div);
-    studentCheckboxes.push(div.querySelector("input"));
-  });
-
-  updateCounts();
-});
-
-// Update Hadir / Total counts
-function updateCounts(){
-  let present = 0;
-  studentCheckboxes.forEach(cb => { if(cb.checked) present++; });
-  presentCountEl.textContent = present;
-  totalStudentsCountEl.textContent = studentCheckboxes.length;
-}
-
-// Mark all present / absent
-document.getElementById("mark-all-present").addEventListener("click", () => {
-  studentCheckboxes.forEach(cb => cb.checked = true);
-  updateCounts();
-});
-document.getElementById("mark-all-absent").addEventListener("click", () => {
-  studentCheckboxes.forEach(cb => cb.checked = false);
-  updateCounts();
-});
-
-// Update counts on individual checkbox click
-studentsListEl.addEventListener("change", (e) => {
-  if(e.target.matches("input.present-checkbox")){
-    updateCounts();
-  }
-});
-
-// Submit form
-function submitKehadiranMurid(e){
-  e.preventDefault();
-  const teacher = teacherSelect.value;
+// ----------------------------
+// 2️⃣ Function to gather attendance
+// ----------------------------
+function getAttendanceData() {
   const date = document.getElementById("date-input").value;
-  const notes = notesInput.value;
-  const students = studentLists[currentClass] || [];
+  const teacher = document.getElementById("teacher-select").value;
+  const kelas = document.getElementById("class-select").value;
+  const notes = document.getElementById("notes-input").value;
 
-  if(!teacher || !date || !currentClass) return alert("Sila lengkapkan borang!");
+  // Students container
+  const studentElements = document.querySelectorAll("#students-list .student-item");
+  
+  let hadirCount = 0;
+  let absentCount = 0;
+  let absentNames = [];
 
-  const presentStudents = [];
-  const absentStudents = [];
-  studentCheckboxes.forEach((cb, idx) => {
-    if(cb.checked) presentStudents.push(students[idx]);
-    else absentStudents.push(students[idx]);
+  studentElements.forEach(student => {
+    const name = student.dataset.name; // ensure each student-item has data-name
+    if (student.classList.contains("present")) {
+      hadirCount++;
+    } else {
+      absentCount++;
+      absentNames.push(name);
+    }
   });
 
-  const record = {
+  return {
     Tarikh: date,
     Guru: teacher,
-    Kelas: currentClass,
+    Kelas: kelas,
     Catatan: notes,
-    Jumlah: students.length,
-    Hadir: presentStudents.length,
-    "T.Hadir": absentStudents.join(", ")
+    Hadir: hadirCount,
+    "Jumlah Tidak Hadir": absentCount,
+    "Senarai Tidak Hadir": absentNames.join(", ")
   };
-
-  addRecordToTable(record);
-  saveRecordToGoogleSheet(record);
-  alert("Rekod berjaya disimpan!");
 }
 
-// Add record to table
-function addRecordToTable(record){
-  const tr = document.createElement("tr");
-  tr.innerHTML = `
-    <td>${record.Tarikh}</td>
-    <td>${record.Guru}</td>
-    <td>${record.Kelas}</td>
-    <td class="text-center">${record.Jumlah}</td>
-    <td class="text-center">${record.Hadir}</td>
-    <td class="text-center">${record["T.Hadir"]}</td>
-    <td class="text-center">-</td>
-  `;
-  recordsTable.appendChild(tr);
+// ----------------------------
+// 3️⃣ Save to Google Sheets
+// ----------------------------
+// Assumes you have set up your Sheets API or firebase 'dataSdk' object
+async function saveAttendance() {
+  const rowData = getAttendanceData();
+  try {
+    await window.dataSdk.save("rekod_kehadiran_murid", rowData); // Sheet page name: rekod_kehadiran_murid
+    showToast("✅ Rekod berjaya disimpan!");
+    updateStats(); // optional, refresh dashboard stats
+  } catch (err) {
+    console.error(err);
+    showToast("❌ Gagal menyimpan rekod. Sila cuba lagi.");
+  }
 }
 
-// Save to Google Sheets (replace with your function)
-function saveRecordToGoogleSheet(record){
-  // Example placeholder for Google Sheets API
-  // You can adapt your previous setup here
-  console.log("Saving to Google Sheet:", record);
-}
-
-// Update counts when checkboxes change
-studentsListEl.addEventListener("change", updateCounts);
-
+// ----------------------------
+// 4️⃣ Form submission
+// ----------------------------
+document.getElementById("murid-form").addEventListener("submit", e => {
+  e.preventDefault();
+  saveAttendance();
+});
 // ================================
 // 2️⃣ Kehadiran Kokurikulum Form
 // ================================
