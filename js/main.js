@@ -153,7 +153,7 @@ function getAttendanceData() {
 async function saveAttendance() {
   const rowData = getAttendanceData();
   try {
-    await window.dataSdk.save("rekod_kehadiran_murid", rowData); // Sheet page name: rekod_kehadiran_murid
+    await window.dataSdk.save("rekodKehadiranMurid", rowData); // Sheet page name: rekod_kehadiran_murid
     showToast("✅ Rekod berjaya disimpan!");
     updateStats(); // optional, refresh dashboard stats
   } catch (err) {
