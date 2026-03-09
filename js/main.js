@@ -81,7 +81,7 @@ setupForm("record-form", "rekodKawalanKelas", [
 // ================================
 // 3️⃣ Borang Rekod Pemantauan Sesi PDP
 // ================================
-setupForm("pemantauanPDPForm", "pemantauan_PDP", [
+setupForm("pemantauanPDPForm", "pemantauanPDP", [
   { id: "nama-pentadbir-pdp" },
   { id: "tarikh-pdp" },
   { id: "masa-pdp" },
