@@ -196,15 +196,15 @@ document.getElementById("pencapaian-form")?.addEventListener("submit", async fun
   const murid = [];
 
   for (let i = 1; i <= 10; i++) {
-
     const guruInput = document.getElementById(`guru${i}`);
     const muridInput = document.getElementById(`murid${i}`);
 
     guru.push(guruInput ? guruInput.value : "");
     murid.push(muridInput ? muridInput.value : "");
-
   }
 
+  // Build row using arrays directly
+  
   const row = [
   tarikh,
   penganjur,
@@ -236,6 +236,7 @@ document.getElementById("pencapaian-form")?.addEventListener("submit", async fun
   new Date(),
   new Date().getFullYear()
 ];
+
 
   await sendToGoogleSheet("pencapaianMurid", row);
 
