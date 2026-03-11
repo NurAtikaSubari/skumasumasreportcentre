@@ -183,12 +183,70 @@ setupForm("formKehadiranKokurikulum", "kehadiranKokurikulum", [
 // ================================
 // 8️⃣ Pencapaian Murid Form
 // ================================
-setupForm("formPencapaianMurid", "Pencapaian_Murid", [
-  { id: "namaMurid" },
-  { id: "subjek" },
-  { id: "tarikh" },
-  { id: "pencapaian" },
-]);
+// ================================
+// 🔟 Pencapaian Murid (Extended Form)
+// ================================
+document.getElementById("pencapaian-form")?.addEventListener("submit", async function(e){
+
+  e.preventDefault();
+
+  const tarikh = document.getElementById("tarikh").value;
+  const penganjur = document.getElementById("penganjur").value;
+  const pencapaian = document.getElementById("pencapaian").value;
+  const peringkat = document.getElementById("peringkat").value;
+
+  const guru = [];
+  const murid = [];
+
+  for (let i = 1; i <= 10; i++) {
+
+    const guruInput = document.getElementById(`guru${i}`);
+    const muridInput = document.getElementById(`murid${i}`);
+
+    guru.push(guruInput ? guruInput.value : "");
+    murid.push(muridInput ? muridInput.value : "");
+
+  }
+
+  const row = [
+  tarikh,
+  penganjur,
+  pencapaian,
+  peringkat,
+
+  guru1,
+  guru2,
+  guru3,
+  guru4,
+  guru5,
+  guru6,
+  guru7,
+  guru8,
+  guru9,
+  guru10,
+
+  murid1,
+  murid2,
+  murid3,
+  murid4,
+  murid5,
+  murid6,
+  murid7,
+  murid8,
+  murid9,
+  murid10,
+
+  new Date(),
+  new Date().getFullYear()
+];
+
+  await sendToGoogleSheet("Pencapaian_Murid", row);
+
+  alert("Rekod berjaya disimpan!");
+
+  document.getElementById("pencapaian-form").reset();
+
+});
 
 // ================================
 // 4️⃣ Pemantauan PDP – GB/PKanan Form
