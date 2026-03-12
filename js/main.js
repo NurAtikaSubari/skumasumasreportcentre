@@ -183,7 +183,7 @@ setupForm("formKehadiranKokurikulum", "kehadiranKokurikulum", [
 // ================================
 // 8️⃣ Pencapaian Murid Form
 // ================================
-document.getElementById("pencapaian-form")?.addEventListener("submit", async function(e) {
+document.getElementById("achievementForm")?.addEventListener("submit", async function(e) {
 
   e.preventDefault();
 
@@ -220,7 +220,7 @@ document.getElementById("pencapaian-form")?.addEventListener("submit", async fun
   await sendToGoogleSheet("pencapaianMurid", row);
 
   alert("Rekod berjaya disimpan!");
-  document.getElementById("pencapaian-form").reset();
+  document.getElementById("achievementForm").reset();
 
 });
 
