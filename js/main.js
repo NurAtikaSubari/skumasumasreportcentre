@@ -3,7 +3,7 @@
 // ================================
 
 // Paste your Web App URL here (from Apps Script deployment)
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbygzmRHlrTyMRlejqdlLk93BQ7jMb9jopWTFE9mCYiGccHuuPorhFXkN1VZ5GNOxleoDw/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbycpdQ8m-a_Gjx2M3dnwXG7tI8ZQ_d0jzhXm-4F9OjGySjkzuHlP9WBIQKhHI-q-FXiyQ/exec";
 
 // Universal function to send row data to Google Sheets
 async function sendToGoogleSheet(sheetName, row) {
@@ -229,7 +229,7 @@ document.getElementById("attendance-form")?.addEventListener("submit", async fun
     new Date().getFullYear()
   ];
 
- const response = await fetch("https://script.google.com/macros/s/AKfycbygzmRHlrTyMRlejqdlLk93BQ7jMb9jopWTFE9mCYiGccHuuPorhFXkN1VZ5GNOxleoDw/exec", {
+ const response = await fetch("https://script.google.com/macros/s/AKfycbycpdQ8m-a_Gjx2M3dnwXG7tI8ZQ_d0jzhXm-4F9OjGySjkzuHlP9WBIQKhHI-q-FXiyQ/exec", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ sheet: "kehadiranKokurikulum", row })
