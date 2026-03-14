@@ -212,7 +212,7 @@ document.getElementById("achievementForm")?.addEventListener("submit", async fun
     new Date().getFullYear()
   ];
 
-  await sendToGoogleSheet("Pencapaian_Murid", row);
+  await sendToGoogleSheet("pencapaianMurid", row);
 
   alert("Rekod berjaya disimpan!");
 
