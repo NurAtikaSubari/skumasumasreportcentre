@@ -8,23 +8,12 @@ const SHEET_URL = "https://script.google.com/macros/s/AKfycbwq27g3UEipKaUyeq_Z9m
 // Universal function to send row data to Google Sheets
 async function sendToGoogleSheet(sheetName, row) {
   try {
-
-    const response = await fetch(SHEET_URL, {
+    await fetch(SHEET_URL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        sheet: sheetName,
-        row: row
-      })
+      body: JSON.stringify({ sheet: sheetName, row: row }),
     });
-
-    const result = await response.text();
-    console.log("Server response:", result);
-
   } catch (err) {
-    console.error("Error sending data:", err);
+    console.error("Error sending data to Google Sheet:", err);
   }
 }
 
@@ -157,7 +146,7 @@ document.getElementById("murid-form")?.addEventListener("submit", async function
 });
 
 // ================================
-// 5️⃣ Laporan RMT Murid
+// 8️⃣ Laporan RMT Murid
 // ================================
 setupForm("rmt-form", "laporanRMTMurid", [
   { id: "rmt-tarikh" },
@@ -168,7 +157,7 @@ setupForm("rmt-form", "laporanRMTMurid", [
 ]);
 
 // ================================
-// 6️⃣ Laporan RMT Guru
+// 9️⃣ Laporan RMT Guru
 // ================================
 setupForm("guru-form", "laporanRMTGuru", [
   { id: "guru-tarikh" },
@@ -179,62 +168,27 @@ setupForm("guru-form", "laporanRMTGuru", [
 ]);
 
 // ================================
-// 7️⃣ Kehadiran Kokurikulum Form
+// 2️⃣ Kehadiran Kokurikulum Form
 // ================================
-setupForm("formKehadiranKokurikulum", "kehadiranKokurikulum", [
+setupForm("formKehadiranKokurikulum", "Kehadiran_Kokurikulum", [
   { id: "tarikh" },
   { id: "guru" },
   { id: "kelas" },
   { id: "jumlah" },
   { id: "hadir" },
-  { id: "tidakHadir" },
-  { id: "senaraiTidakHadir" },
+  { id: "tidak-hadir" },
+  { id: "senarai-tidak-hadir" },
 ]);
 
 // ================================
-// 8️⃣ Pencapaian Murid Form
+// 3️⃣ Pencapaian Murid Form
 // ================================
-  document.getElementById("achievementForm")?.addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const tarikh = document.getElementById("tarikh")?.value || "";
-  const penganjur = document.getElementById("penganjur")?.value || "";
-  const pencapaian = document.getElementById("pencapaian")?.value || "";
-  const peringkat = document.getElementById("peringkat")?.value || "";
-
-  // Collect guru values
-  const guru = [];
-  for (let i = 1; i <= 10; i++) {
-    guru.push(document.getElementById(`guru${i}`)?.value || "");
-  }
-
-  // Collect murid values
-  const murid = [];
-  for (let i = 1; i <= 10; i++) {
-    murid.push(document.getElementById(`murid${i}`)?.value || "");
-  }
-
-  // Construct row array (same format as other forms)
-  const row = [
-    tarikh,
-    penganjur,
-    pencapaian,
-    peringkat,
-    ...guru,
-    ...murid,
-    new Date(),
-    new Date().getFullYear()
-  ];
-
-  try {
-    await sendToGoogleSheet("pencapaianMurid", row); // same array-based function as other forms
-    alert("Rekod berjaya disimpan!");
-    document.getElementById("achievementForm").reset();
-  } catch (err) {
-    console.error(err);
-    alert("Gagal menyimpan rekod. Sila cuba lagi.");
-  }
-});
+setupForm("formPencapaianMurid", "Pencapaian_Murid", [
+  { id: "nama-murid" },
+  { id: "subjek" },
+  { id: "tarikh" },
+  { id: "pencapaian" },
+]);
 
 // ================================
 // 4️⃣ Pemantauan PDP – GB/PKanan Form
