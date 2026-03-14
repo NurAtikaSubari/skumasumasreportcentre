@@ -183,12 +183,41 @@ setupForm("formKehadiranKokurikulum", "Kehadiran_Kokurikulum", [
 // ================================
 // 3️⃣ Pencapaian Murid Form
 // ================================
-setupForm("formPencapaianMurid", "Pencapaian_Murid", [
-  { id: "nama-murid" },
-  { id: "subjek" },
-  { id: "tarikh" },
-  { id: "pencapaian" },
-]);
+document.getElementById("achievementForm")?.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const tarikh = document.getElementById("tarikh")?.value || "";
+  const penganjur = document.getElementById("penganjur")?.value || "";
+  const pencapaian = document.getElementById("pencapaian")?.value || "";
+  const peringkat = document.getElementById("peringkat")?.value || "";
+
+  const guru = [];
+  for (let i = 1; i <= 10; i++) {
+    guru.push(document.getElementById(`guru${i}`)?.value || "");
+  }
+
+  const murid = [];
+  for (let i = 1; i <= 10; i++) {
+    murid.push(document.getElementById(`murid${i}`)?.value || "");
+  }
+
+  const row = [
+    tarikh,
+    penganjur,
+    pencapaian,
+    peringkat,
+    ...guru,
+    ...murid,
+    new Date(),
+    new Date().getFullYear()
+  ];
+
+  await sendToGoogleSheet("Pencapaian_Murid", row);
+
+  alert("Rekod berjaya disimpan!");
+
+  document.getElementById("achievementForm").reset();
+});
 
 // ================================
 // 4️⃣ Pemantauan PDP – GB/PKanan Form
