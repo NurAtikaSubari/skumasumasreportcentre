@@ -215,7 +215,6 @@ document.getElementById("achievementForm")?.addEventListener("submit", async fun
   await sendToGoogleSheet("pencapaianMurid", row);
 
   alert("Rekod berjaya disimpan!");
-
   document.getElementById("achievementForm").reset();
 });
 
