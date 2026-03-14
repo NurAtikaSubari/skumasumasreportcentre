@@ -8,12 +8,23 @@ const SHEET_URL = "https://script.google.com/macros/s/AKfycbyqOUs8CdVCADY5W4tZZJ
 // Universal function to send row data to Google Sheets
 async function sendToGoogleSheet(sheetName, row) {
   try {
-    await fetch(SHEET_URL, {
+
+    const response = await fetch(SHEET_URL, {
       method: "POST",
-      body: JSON.stringify({ sheet: sheetName, row: row }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        sheet: sheetName,
+        row: row
+      })
     });
+
+    const result = await response.text();
+    console.log("Server response:", result);
+
   } catch (err) {
-    console.error("Error sending data to Google Sheet:", err);
+    console.error("Error sending data:", err);
   }
 }
 
