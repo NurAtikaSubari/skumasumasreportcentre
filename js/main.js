@@ -411,99 +411,70 @@ setupForm("laporanGBPKForm", "laporanGBPK", [
 ]);
 
 // Fetch all Laporan GB/PKanan from Google Sheets
-async function fetchLaporanGBPK() {
+async function loadLaporanGBPK() {
+  const container = document.getElementById("laporan-gbpk-container");
+  container.innerHTML = "Memuatkan rekod...";
+
   try {
-    // Assuming your Google Apps Script returns JSON array of rows
-    const response = await fetch(`${SHEET_URL}?sheet=laporanGBPK`);
-    const data = await response.json();
+    const res = await fetch(`${SHEET_URL}?sheet=laporanGBPK`);
+    const json = await res.json();
 
-    const container = document.getElementById("laporan-gbpk-container");
-    container.innerHTML = ""; // Clear previous content
-
-    if (!data || data.length === 0) {
-      container.innerHTML = `<p class="text-gray-400">Tiada rekod ditemui.</p>`;
+    if(json.result !== "success") {
+      container.innerHTML = "Ralat memuatkan rekod: " + json.message;
       return;
     }
 
-    // Render each row as a card
-    data.forEach((row, index) => {
-      // Adjust index according to your sheet column structure
-      const [
-        namaPemantau,
-        tarikh,
-        hari,
-        masa,
-        soalan_1,
-        soalan_2,
-        soalan_3,
-        soalan_4,
-        soalan_5,
-        soalan_6,
-        soalan_7,
-        soalan_8,
-        soalan_9,
-        soalan_10,
-        soalan_11,
-        soalan_12,
-        timestamp
-      ] = row;
+    const data = json.data;
 
-      const card = document.createElement("div");
-      card.className = "bg-gray-700 p-4 mb-4 rounded-lg border border-gray-600";
+    // If sheet is empty
+    if(data.length <= 1){
+      container.innerHTML = "Tiada rekod ditemui.";
+      return;
+    }
 
-      card.innerHTML = `
-        <h6 class="font-semibold text-yellow-400 mb-2">Rekod #${index + 1} - ${namaPemantau}</h6>
-        <p class="text-gray-300 mb-1"><strong>Tarikh:</strong> ${tarikh} (${hari})</p>
-        <p class="text-gray-300 mb-1"><strong>Masa:</strong> ${masa}</p>
-        <div class="mt-2 text-gray-300">
-          <p><strong>1.</strong> ${soalan_1}</p>
-          <p><strong>2.</strong> ${soalan_2}</p>
-          <p><strong>3.</strong> ${soalan_3}</p>
-          <p><strong>4.</strong> ${soalan_4}</p>
-          <p><strong>5.</strong> ${soalan_5}</p>
-          <p><strong>6.</strong> ${soalan_6}</p>
-          <p><strong>7.</strong> ${soalan_7}</p>
-          <p><strong>8.</strong> ${soalan_8}</p>
-          <p><strong>9.</strong> ${soalan_9}</p>
-          <p><strong>10.</strong> ${soalan_10}</p>
-          <p><strong>11.</strong> ${soalan_11}</p>
-          <p><strong>12.</strong> ${soalan_12}</p>
-        </div>
-        <p class="text-gray-400 text-sm mt-2"><em>Disimpan pada: ${timestamp}</em></p>
-      `;
+    // Build table
+    let html = `<div class="overflow-x-auto"><table class="min-w-full border border-gray-600">`;
 
-      container.appendChild(card);
-    });
+    // Header
+    html += "<tr class='bg-gray-700 text-yellow-400'>";
+    data[0].forEach(h => html += `<th class="px-4 py-2 border border-gray-600">${h}</th>`);
+    html += "</tr>";
 
-  } catch (err) {
-    console.error("Error fetching laporan GB/PK:", err);
-    document.getElementById("laporan-gbpk-container").innerHTML = `<p class="text-red-500">Ralat memuatkan rekod.</p>`;
+    // Rows
+    for(let i=1; i<data.length; i++){
+      html += "<tr class='bg-gray-800 text-white'>";
+      data[i].forEach(cell => html += `<td class="px-4 py-2 border border-gray-600">${cell}</td>`);
+      html += "</tr>";
+    }
+
+    html += "</table></div>";
+    container.innerHTML = html;
+
+  } catch(err) {
+    container.innerHTML = "Ralat memuatkan rekod: " + err.message;
+    console.error(err);
   }
 }
 
-function switchTabGBPK(tab) {
+// Load when user switches to "Lihat Laporan" tab
+function switchTabGBPK(tab){
   const tambah = document.getElementById("content-tambah-gbpk");
   const lihat = document.getElementById("content-lihat-gbpk");
-
   const tabTambahBtn = document.getElementById("tab-tambah-gbpk");
   const tabLihatBtn = document.getElementById("tab-lihat-gbpk");
 
-  if(tab === "tambah") {
+  if(tab === "tambah"){
     tambah.classList.remove("hidden");
     lihat.classList.add("hidden");
     tabTambahBtn.classList.add("text-yellow-400", "border-yellow-400");
-    tabTambahBtn.classList.remove("text-gray-400", "border-transparent");
-    tabLihatBtn.classList.add("text-gray-400", "border-transparent");
     tabLihatBtn.classList.remove("text-yellow-400", "border-yellow-400");
-  } else {
+  } else if(tab === "lihat"){
     tambah.classList.add("hidden");
     lihat.classList.remove("hidden");
     tabLihatBtn.classList.add("text-yellow-400", "border-yellow-400");
-    tabLihatBtn.classList.remove("text-gray-400", "border-transparent");
-    tabTambahBtn.classList.add("text-gray-400", "border-transparent");
     tabTambahBtn.classList.remove("text-yellow-400", "border-yellow-400");
 
-    // Fetch laporan only when switching to "Lihat Laporan"
-    fetchLaporanGBPK();
+    // Load records from Google Sheets
+    loadLaporanGBPK();
   }
 }
