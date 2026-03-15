@@ -3,7 +3,7 @@
 // ================================
 
 // Paste your Web App URL here (from Apps Script deployment)
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbwWKIPxrEj3ctUSHmMhSYbmE5Oxsx-DWQt7xR95g7U08uwFa7pVtTqHhZmP2V7wDKZRmA/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzJ8b2pFnLQmbTq9WNDkE8ZltAikdk5jsTC1mY5NT_xfX_s8dDH2cYWPfdjpR1F_wXI8g/exec";
 
 // Universal function to send row data to Google Sheets
 async function sendToGoogleSheet(sheetName, row) {
