@@ -480,3 +480,30 @@ async function fetchLaporanGBPK() {
     document.getElementById("laporan-gbpk-container").innerHTML = `<p class="text-red-500">Ralat memuatkan rekod.</p>`;
   }
 }
+
+function switchTabGBPK(tab) {
+  const tambah = document.getElementById("content-tambah-gbpk");
+  const lihat = document.getElementById("content-lihat-gbpk");
+
+  const tabTambahBtn = document.getElementById("tab-tambah-gbpk");
+  const tabLihatBtn = document.getElementById("tab-lihat-gbpk");
+
+  if(tab === "tambah") {
+    tambah.classList.remove("hidden");
+    lihat.classList.add("hidden");
+    tabTambahBtn.classList.add("text-yellow-400", "border-yellow-400");
+    tabTambahBtn.classList.remove("text-gray-400", "border-transparent");
+    tabLihatBtn.classList.add("text-gray-400", "border-transparent");
+    tabLihatBtn.classList.remove("text-yellow-400", "border-yellow-400");
+  } else {
+    tambah.classList.add("hidden");
+    lihat.classList.remove("hidden");
+    tabLihatBtn.classList.add("text-yellow-400", "border-yellow-400");
+    tabLihatBtn.classList.remove("text-gray-400", "border-transparent");
+    tabTambahBtn.classList.add("text-gray-400", "border-transparent");
+    tabTambahBtn.classList.remove("text-yellow-400", "border-yellow-400");
+
+    // Fetch laporan only when switching to "Lihat Laporan"
+    fetchLaporanGBPK();
+  }
+}
