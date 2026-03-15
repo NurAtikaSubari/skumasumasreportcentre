@@ -1923,51 +1923,7 @@
     }
 
     // Form submission
-    document.getElementById('attendance-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      if (currentRecordCount >= 999) {
-        showToast('Had maksimum 999 rekod telah dicapai. Sila padam beberapa rekod dahulu.', true);
-        return;
-      }
-      
-      const submitBtn = document.getElementById('submit-btn');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Menyimpan...</span>';
-      
-      const checkedBoxes = studentList.querySelectorAll('input[type="checkbox"]:checked');
-      const muridHadir = Array.from(checkedBoxes).map(cb => cb.value).join(', ');
-      
-      const recordData = {
-        id: Date.now().toString(),
-        nama_guru: document.getElementById('nama-guru').value,
-        tarikh: document.getElementById('tarikh').value,
-        perjumpaan: parseInt(document.getElementById('perjumpaan').value),
-        kategori: document.getElementById('kategori').value,
-        aktiviti: document.getElementById('aktiviti').value,
-        murid_hadir: muridHadir,
-        jumlah_hadir: checkedBoxes.length,
-        created_at: new Date().toISOString()
-      };
-      
-      const result = await window.dataSdk.create(recordData);
-      
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalText;
-      
-      if (result.isOk) {
-        showToast('Laporan berjaya disimpan!');
-        this.reset();
-        studentList.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-        document.getElementById('present-count').textContent = '0';
-        document.getElementById('attendance-percentage').textContent = '0%';
-        document.getElementById('aktiviti').innerHTML = '<option value="">Pilih aktiviti dahulu</option>';
-        document.getElementById('aktiviti').disabled = true;
-      } else {
-        showToast('Ralat menyimpan laporan. Sila cuba lagi.', true);
-      }
-    });
+   
 
     // Tab navigation
     const tabForm = document.getElementById('tab-form');
@@ -2451,6 +2407,6 @@
     document.getElementById('rekodKehadiranMurModal').classList.add('hidden');
   });
 </script>
- 
+ <script src="js/main.js"></script>
  </body>
 </html>
