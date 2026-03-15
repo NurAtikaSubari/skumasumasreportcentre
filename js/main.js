@@ -3,35 +3,33 @@
 // ================================
 
 // Paste your Web App URL here (from Apps Script deployment)
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbycpdQ8m-a_Gjx2M3dnwXG7tI8ZQ_d0jzhXm-4F9OjGySjkzuHlP9WBIQKhHI-q-FXiyQ/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwWKIPxrEj3ctUSHmMhSYbmE5Oxsx-DWQt7xR95g7U08uwFa7pVtTqHhZmP2V7wDKZRmA/exec";
 
 // Universal function to send row data to Google Sheets
 async function sendToGoogleSheet(sheetName, row) {
+
   try {
 
     const response = await fetch(SHEET_URL, {
       method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
       body: JSON.stringify({
         sheet: sheetName,
         row: row
       })
     });
 
-    if (!response.ok) throw new Error("HTTP error " + response.status);
-
-    const text = await response.text();
-    console.log("Google Sheets response:", text);
+    const result = await response.text();
+    console.log(result);
 
     return { isOk: true };
 
   } catch (err) {
-    console.error("sendToGoogleSheet error:", err);
+
+    console.error(err);
     return { isOk: false, error: err.message };
+
   }
+
 }
 // Generic form setup function
 function setupForm(formId, sheetName, fields) {
