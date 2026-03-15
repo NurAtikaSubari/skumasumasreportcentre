@@ -417,12 +417,14 @@ async function loadLaporanGBPK() {
 
   try {
     const res = await fetch(`${SHEET_URL}?sheet=laporanGBPK`);
-    const json = await res.json();
+   const json = await res.json();
 
-    if(json.result !== "success") {
-      container.innerHTML = "Ralat memuatkan rekod: " + json.message;
-      return;
-    }
+if(json.result !== "success"){
+  container.innerHTML = "Ralat memuatkan rekod: " + json.message;
+  return; // stop here
+}
+
+const data = json.data; // only use this if result === success
 
     const data = json.data;
 
