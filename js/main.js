@@ -254,6 +254,11 @@ async function loadRekodKehadiranMurid(){
   }
 }
 
+function openKehadiran(){
+  showSection("kehadiran");
+  loadRekodKehadiranMurid(); // ✅ THIS IS KEY
+}
+
 // ================================
 // RMT Murid Form
 // ================================
