@@ -167,85 +167,60 @@ document.getElementById("murid-form")?.addEventListener("submit", async function
 });
 
 // ================================
-// LOAD REKOD KEHADIRAN MURID (GBPK STYLE)
+// 4️⃣ Rekod Kehadiran Harian Murid 
 // ================================
-async function loadRekodKehadiranMurid(){
+document.getElementById("murid-form")?.addEventListener("submit", async function(e){
+  e.preventDefault();
 
-  const table = document.getElementById("records-table");
-  const recordCount = document.getElementById("record-count");
+  const tarikh = document.getElementById("date-input").value;
+  const guru = document.getElementById("teacher-select").value;
+  const kelas = document.getElementById("class-select").value;
+  const catatan = document.getElementById("notes-input").value || "";
 
-  if(!table) return;
+  const students = document.querySelectorAll("#students-list .student-item");
 
-  table.innerHTML = `
-    <tr>
-      <td colspan="7" class="text-center py-6 text-gray-400">
-        Memuatkan data...
-      </td>
-    </tr>
-  `;
+  let jumlahMurid = students.length;
+  let hadir = 0;
+  let tidakHadir = 0;
+  let senaraiTidakHadir = [];
 
-  try{
+  students.forEach(student => {
 
-    const res = await fetch(`${SHEET_URL}?sheet=rekodKehadiranMurid`);
-    const data = await res.json();
+    const name = student.innerText.replace("❌","").trim();
 
-    if(!data || data.length <= 1){
-      table.innerHTML = `
-        <tr>
-          <td colspan="7" class="text-center py-10 text-gray-500">
-            📭 Tiada rekod kehadiran
-          </td>
-        </tr>
-      `;
-      recordCount.textContent = 0;
-      return;
+    if(student.classList.contains("present")){
+      hadir++;
+    }
+    else if(student.classList.contains("absent")){
+      tidakHadir++;
+      senaraiTidakHadir.push(name);
     }
 
-    let html = "";
-    let count = 0;
+  });
 
-    data.slice(1).reverse().forEach((row, index) => {
+  const row = [
+    tarikh,
+    guru,
+    kelas,
+    jumlahMurid,
+    hadir,
+    tidakHadir,
+    senaraiTidakHadir.join(", "),
+    catatan,
+    new Date()
+  ];
 
-      const tarikh = new Date(row[0]).toLocaleDateString("ms-MY");
-      const guru = row[1];
-      const kelas = row[2];
-      const jumlah = row[3];
-      const hadir = row[4];
-      const tidakHadir = row[5];
+  // ✅ send to Google Sheets
+  await sendToGoogleSheet("rekodKehadiranMurid", row);
 
-      html += `
-        <tr class="border-b border-yellow-900/20 hover:bg-yellow-900/10">
-          <td class="py-3 px-3">${tarikh}</td>
-          <td class="py-3 px-3">${guru}</td>
-          <td class="py-3 px-3">${kelas}</td>
-          <td class="py-3 px-3 text-center">${jumlah}</td>
-          <td class="py-3 px-3 text-center text-green-400">${hadir}</td>
-          <td class="py-3 px-3 text-center text-red-400">${tidakHadir}</td>
-          <td class="py-3 px-3 text-center">
-            <button onclick="viewDetail(${index})" class="text-blue-400 text-sm">👁️</button>
-          </td>
-        </tr>
-      `;
-
-      count++;
-    });
-
-    table.innerHTML = html;
-    recordCount.textContent = count;
-
-  } catch(err){
-
-    table.innerHTML = `
-      <tr>
-        <td colspan="7" class="text-center text-red-400">
-          ❌ Gagal ambil data
-        </td>
-      </tr>
-    `;
-
-    console.error(err);
+  // ✅ reload data AFTER save
+  if(typeof loadRekodKehadiranMurid === "function"){
+    loadRekodKehadiranMurid();
   }
-}
+
+  alert("Rekod berjaya disimpan!");
+
+});
 
 // ================================
 // RMT Murid Form
