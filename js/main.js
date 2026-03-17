@@ -167,14 +167,22 @@ document.getElementById("murid-form")?.addEventListener("submit", async function
 });
 
 // ================================
-// LOAD REKOD KEHADIRAN HARIAN MURID
+// LOAD REKOD KEHADIRAN MURID (TABLE)
 // ================================
 async function loadRekodKehadiranMurid(){
 
- const table = document.getElementById("records-table");
-  if(!container) return;
+  const table = document.getElementById("records-table");
+  const recordCount = document.getElementById("record-count");
 
-  container.innerHTML = "Memuatkan rekod...";
+  if(!table) return;
+
+  table.innerHTML = `
+    <tr>
+      <td colspan="7" class="text-center py-6 text-gray-400">
+        Memuatkan data...
+      </td>
+    </tr>
+  `;
 
   try{
 
@@ -182,54 +190,68 @@ async function loadRekodKehadiranMurid(){
     const json = await res.json();
 
     if(json.result !== "success"){
-      container.innerHTML = "Ralat memuatkan rekod.";
+      table.innerHTML = `<tr><td colspan="7">Ralat memuatkan data</td></tr>`;
       return;
     }
 
     const data = json.data;
 
     if(!data || data.length <= 1){
-      container.innerHTML = "Tiada rekod ditemui.";
+      table.innerHTML = `
+        <tr>
+          <td colspan="7" class="text-center py-10 text-gray-500">
+            📭 Tiada rekod kehadiran
+          </td>
+        </tr>
+      `;
+      recordCount.textContent = 0;
       return;
     }
 
     let html = "";
 
+    let totalRekod = 0;
+
     for(let i = 1; i < data.length; i++){
 
       const row = data[i];
 
-      const tarikh = row[0];
+      const tarikh = new Date(row[0]).toLocaleDateString("ms-MY");
       const guru = row[1];
       const kelas = row[2];
-      const jumlahMurid = row[3];
+      const jumlah = row[3];
       const hadir = row[4];
       const tidakHadir = row[5];
-      const senarai = row[6] || "-";
-      const catatan = row[7] || "-";
 
       html += `
-        <div class="glass-card rounded-xl p-6 mb-4">
-          <p><strong>📅 Tarikh:</strong> ${tarikh}</p>
-          <p><strong>👩‍🏫 Guru:</strong> ${guru}</p>
-          <p><strong>🏫 Kelas:</strong> ${kelas}</p>
-          <p><strong>👥 Jumlah Murid:</strong> ${jumlahMurid}</p>
-          <p><strong>✅ Hadir:</strong> ${hadir}</p>
-          <p><strong>❌ Tidak Hadir:</strong> ${tidakHadir}</p>
-          <p><strong>📋 Senarai Tidak Hadir:</strong> ${senarai}</p>
-          <p><strong>📝 Catatan:</strong> ${catatan}</p>
-        </div>
+        <tr class="border-b border-yellow-900/20 hover:bg-yellow-900/10">
+          <td class="py-3 px-3">${tarikh}</td>
+          <td class="py-3 px-3">${guru}</td>
+          <td class="py-3 px-3">${kelas}</td>
+          <td class="py-3 px-3 text-center">${jumlah}</td>
+          <td class="py-3 px-3 text-center text-green-400">${hadir}</td>
+          <td class="py-3 px-3 text-center text-red-400">${tidakHadir}</td>
+          <td class="py-3 px-3 text-center">
+            <button class="text-blue-400 text-sm">👁️</button>
+          </td>
+        </tr>
       `;
 
+      totalRekod++;
     }
 
-   table.innerHTML = html;
+    table.innerHTML = html;
+    recordCount.textContent = totalRekod;
 
+  } catch(err){
+    table.innerHTML = `
+      <tr>
+        <td colspan="7" class="text-center text-red-400">
+          Gagal ambil data
+        </td>
+      </tr>
+    `;
   }
-  catch(err){
-    table.innerHTML = "Gagal memuatkan rekod.";
-  }
-
 }
 
 // ================================
