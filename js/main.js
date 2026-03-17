@@ -156,7 +156,7 @@ document.getElementById("murid-form")?.addEventListener("submit", async function
 
 await sendToGoogleSheet("rekodKehadiranMurid", row);
 
-window.addEventListener("DOMContentLoaded", () => {
+//window.addEventListener("DOMContentLoaded", () => {
   loadRekodKehadiranMurid();
 });;
 });
