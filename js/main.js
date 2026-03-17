@@ -167,7 +167,7 @@ document.getElementById("murid-form")?.addEventListener("submit", async function
 });
 
 // ================================
-// LOAD REKOD KEHADIRAN MURID (TABLE)
+// LOAD REKOD KEHADIRAN MURID (GBPK STYLE)
 // ================================
 async function loadRekodKehadiranMurid(){
 
@@ -187,14 +187,7 @@ async function loadRekodKehadiranMurid(){
   try{
 
     const res = await fetch(`${SHEET_URL}?sheet=rekodKehadiranMurid`);
-    const json = await res.json();
-
-    if(json.result !== "success"){
-      table.innerHTML = `<tr><td colspan="7">Ralat memuatkan data</td></tr>`;
-      return;
-    }
-
-    const data = json.data;
+    const data = await res.json();
 
     if(!data || data.length <= 1){
       table.innerHTML = `
@@ -209,12 +202,9 @@ async function loadRekodKehadiranMurid(){
     }
 
     let html = "";
+    let count = 0;
 
-    let totalRekod = 0;
-
-    for(let i = 1; i < data.length; i++){
-
-      const row = data[i];
+    data.slice(1).reverse().forEach((row, index) => {
 
       const tarikh = new Date(row[0]).toLocaleDateString("ms-MY");
       const guru = row[1];
@@ -232,31 +222,29 @@ async function loadRekodKehadiranMurid(){
           <td class="py-3 px-3 text-center text-green-400">${hadir}</td>
           <td class="py-3 px-3 text-center text-red-400">${tidakHadir}</td>
           <td class="py-3 px-3 text-center">
-            <button class="text-blue-400 text-sm">👁️</button>
+            <button onclick="viewDetail(${index})" class="text-blue-400 text-sm">👁️</button>
           </td>
         </tr>
       `;
 
-      totalRekod++;
-    }
+      count++;
+    });
 
     table.innerHTML = html;
-    recordCount.textContent = totalRekod;
+    recordCount.textContent = count;
 
   } catch(err){
+
     table.innerHTML = `
       <tr>
         <td colspan="7" class="text-center text-red-400">
-          Gagal ambil data
+          ❌ Gagal ambil data
         </td>
       </tr>
     `;
-  }
-}
 
-function openKehadiran(){
-  showSection("kehadiran");
-  loadRekodKehadiranMurid(); // ✅ THIS IS KEY
+    console.error(err);
+  }
 }
 
 // ================================
