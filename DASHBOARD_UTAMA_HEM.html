@@ -641,31 +641,32 @@ data-section="kehadiran">
       }
     }
 
+  // First, hide all sections
   function showSection(sectionId) {
+    const sections = document.querySelectorAll('.section-content');
+    const buttons = document.querySelectorAll('.nav-btn');
 
-  document.querySelectorAll('.section-content').forEach(el => el.classList.add('hidden'));
+    sections.forEach(s => {
+      if (s.id === 'section-' + sectionId) {
+        s.classList.remove('hidden');
+      } else {
+        s.classList.add('hidden');
+      }
+    });
 
-  document.querySelectorAll('.nav-btn').forEach(el => {
-    el.classList.remove('active', 'text-yellow-400');
-    el.classList.add('text-gray-300');
+    buttons.forEach(btn => {
+      if (btn.dataset.section === sectionId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  // Optional: default to 'kehadiran'
+  document.addEventListener('DOMContentLoaded', () => {
+    showSection('kehadiran');
   });
-
-  const section = document.getElementById('section-' + sectionId);
-  if (section) {
-    section.classList.remove('hidden');
-    section.classList.add('animate-slide-up');
-  }
-
-  const navBtn = document.querySelector(`[data-section="${sectionId}"]`);
-  if (navBtn) {
-    navBtn.classList.add('active', 'text-yellow-400');
-    navBtn.classList.remove('text-gray-300');
-  }
-
-  if(sectionId === "laporan"){
-    loadLaporan();
-  }
-}
   /*const section = document.getElementById('section-' + sectionId);
   if (section) {
     section.classList.remove('hidden');
