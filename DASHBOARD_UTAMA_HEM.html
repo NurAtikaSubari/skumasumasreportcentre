@@ -642,15 +642,31 @@ data-section="kehadiran">
     }
 
     function showSection(sectionId) {
-      document.querySelectorAll('.section-content').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.nav-btn').forEach(el => {
-        el.classList.remove('active', 'text-yellow-400');
-        el.classList.add('text-gray-300');
 
-       if(sectionId === "laporan"){
-  loadLaporan();
+  document.querySelectorAll('.section-content').forEach(el => el.classList.add('hidden'));
+
+  document.querySelectorAll('.nav-btn').forEach(el => {
+    el.classList.remove('active', 'text-yellow-400');
+    el.classList.add('text-gray-300');
+  });
+
+  const section = document.getElementById('section-' + sectionId);
+  if (section) {
+    section.classList.remove('hidden');
+    section.classList.add('animate-slide-up');
+  }
+
+  const navBtn = document.querySelector(`[data-section="${sectionId}"]`);
+  if (navBtn) {
+    navBtn.classList.add('active', 'text-yellow-400');
+    navBtn.classList.remove('text-gray-300');
+  }
+
+  // ✅ CORRECT PLACE
+  if(sectionId === "laporan"){
+    loadLaporan();
+  }
 }
-      });
       
       const section = document.getElementById('section-' + sectionId);
       if (section) {
@@ -765,44 +781,6 @@ data-section="kehadiran">
 };
 
 
-// ======================
-// SIMPAN RMT GURU (KEKAL)
-// ======================
-window.submitRMTGuru = async function(event) {
-  event.preventDefault();
-
-  const tarikh = document.getElementById("guru-tarikh").value;
-  const guru = document.getElementById("guru-nama").value;
-  const jumlah = document.getElementById("guru-jumlah").value;
-  const kelas = document.getElementById("guru-kelas").value;
-  const ulasan = document.getElementById("guru-ulasan").value;
-
-  try {
-    await addDoc(collection(db, "laporan"), {
-      type: "rmt-guru",
-      nama: guru,
-      tarikh,
-      jumlah,
-      kelas,
-      ulasan,
-      createdAt: serverTimestamp()
-    });
-
-    document.getElementById("guru-form").reset();
-    document.getElementById("guru-success").classList.remove("hidden");
-
-    loadLaporan();
-
-    setTimeout(() => {
-      document.getElementById("guru-success").classList.add("hidden");
-    }, 3000);
-
-  } catch (error) {
-    alert("Ralat semasa menyimpan laporan.");
-  }
-};
-
-
 
 // ======================
 // LOAD SEMUA LAPORAN
@@ -811,8 +789,6 @@ window.loadLaporan = async function() {
 
   const container = document.getElementById("laporan-container");
   container.innerHTML = "";
-
-  const snapshot = await getDocs(collection(db, "laporan"));
 
   if (snapshot.empty) {
     container.innerHTML = `
