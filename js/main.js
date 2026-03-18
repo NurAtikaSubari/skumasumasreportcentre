@@ -266,86 +266,89 @@ document.getElementById("guru-form")?.addEventListener("submit", async function(
 });
 
 // ================================
-// LOAD SEMUA LAPORAN (RMT MURID + RMT GURU)
+// RMT Laporan – Murid + Guru (Fixed Tab Switching)
 // ================================
-async function loadLaporan(){
 
+let cachedRMTMurid = [];
+let cachedRMTGuru = [];
+
+// Load both sheets and cache them
+async function loadLaporan() {
   const container = document.getElementById("laporan-container");
   if(!container) return;
 
   container.innerHTML = "Memuatkan laporan...";
 
-  try{
-
-    // FETCH BOTH SHEETS
-   const [muridRes, guruRes] = await Promise.all([
-  fetch(`${SHEET_URL}?sheet=laporanRMTMurid`),
-  fetch(`${SHEET_URL}?sheet=laporanRMTGuru`)
-]);;
+  try {
+    const [muridRes, guruRes] = await Promise.all([
+      fetch(`${SHEET_URL}?sheet=laporanRMTMurid`),
+      fetch(`${SHEET_URL}?sheet=laporanRMTGuru`)
+    ]);
 
     const muridJson = await muridRes.json();
     const guruJson = await guruRes.json();
 
-    let html = "";
+    cachedRMTMurid = muridJson.result === "success" ? muridJson.data.slice(1) : [];
+    cachedRMTGuru = guruJson.result === "success" ? guruJson.data.slice(1) : [];
 
-    // ======================
-    // RMT MURID
-    // ======================
-    if(muridJson.result === "success" && muridJson.data.length > 1){
-
-      for(let i = 1; i < muridJson.data.length; i++){
-
-        const row = muridJson.data[i];
-
-        html += `
-          <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-murid">
-            <p><strong>📌 Jenis:</strong> RMT Murid</p>
-            <p><strong>📅 Tarikh:</strong> ${row[0]}</p>
-            <p><strong>👨‍🏫 Guru:</strong> ${row[1]}</p>
-            <p><strong>🍚 Menu:</strong> ${row[2]}</p>
-            <p><strong>🍎 Buah:</strong> ${row[3]}</p>
-            <p><strong>💭 Ulasan:</strong> ${row[4] || "-"}</p>
-          </div>
-        `;
-      }
-    }
-
-    // ======================
-    // RMT GURU
-    // ======================
-    if(guruJson.result === "success" && guruJson.data.length > 1){
-
-      for(let i = 1; i < guruJson.data.length; i++){
-
-        const row = guruJson.data[i];
-
-        html += `
-          <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-guru">
-            <p><strong>📌 Jenis:</strong> RMT Guru</p>
-            <p><strong>📅 Tarikh:</strong> ${row[0]}</p>
-            <p><strong>👨‍🏫 Guru:</strong> ${row[1]}</p>
-            <p><strong>👥 Jumlah:</strong> ${row[2]}</p>
-            <p><strong>🏫 Kelas:</strong> ${row[3]}</p>
-            <p><strong>💭 Ulasan:</strong> ${row[4] || "-"}</p>
-          </div>
-        `;
-      }
-    }
-
-    // ======================
-    // EMPTY STATE
-    // ======================
-    if(html === ""){
-      html = "Tiada laporan ditemui";
-    }
-
-    container.innerHTML = html;
-
-  } catch(err){
+    renderLaporan("semua"); // initially show all
+  } catch(err) {
     console.error(err);
     container.innerHTML = "Gagal memuatkan laporan";
   }
 }
+
+// Render function for tabs
+function renderLaporan(type) {
+  const container = document.getElementById("laporan-container");
+  if(!container) return;
+
+  let html = "";
+
+  // RMT Murid
+  if(type === "rmt-murid" || type === "semua") {
+    cachedRMTMurid.forEach(row => {
+      html += `
+        <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-murid">
+          <p><strong>📌 Jenis:</strong> RMT Murid</p>
+          <p><strong>📅 Tarikh:</strong> ${row[0]}</p>
+          <p><strong>👨‍🏫 Guru:</strong> ${row[1]}</p>
+          <p><strong>🍚 Menu:</strong> ${row[2]}</p>
+          <p><strong>🍎 Buah:</strong> ${row[3]}</p>
+          <p><strong>💭 Ulasan:</strong> ${row[4] || "-"}</p>
+        </div>
+      `;
+    });
+  }
+
+  // RMT Guru
+  if(type === "rmt-guru" || type === "semua") {
+    cachedRMTGuru.forEach(row => {
+      html += `
+        <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-guru">
+          <p><strong>📌 Jenis:</strong> RMT Guru</p>
+          <p><strong>📅 Tarikh:</strong> ${row[0]}</p>
+          <p><strong>👨‍🏫 Guru:</strong> ${row[1]}</p>
+          <p><strong>👥 Jumlah:</strong> ${row[2]}</p>
+          <p><strong>🏫 Kelas:</strong> ${row[3]}</p>
+          <p><strong>💭 Ulasan:</strong> ${row[4] || "-"}</p>
+        </div>
+      `;
+    });
+  }
+
+  if(html === "") html = "Tiada laporan ditemui";
+
+  container.innerHTML = html;
+}
+
+// Tab buttons
+document.getElementById("tab-semua")?.addEventListener("click", () => renderLaporan("semua"));
+document.getElementById("tab-rmt-murid")?.addEventListener("click", () => renderLaporan("rmt-murid"));
+document.getElementById("tab-rmt-guru")?.addEventListener("click", () => renderLaporan("rmt-guru"));
+
+// Initial load
+loadLaporan();
 
 // ================================
 // 6️⃣ Borang Perjumpaan Mingguan
