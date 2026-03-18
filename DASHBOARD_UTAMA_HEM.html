@@ -641,7 +641,7 @@ data-section="kehadiran">
       }
     }
 
-    function showSection(sectionId) {
+  function showSection(sectionId) {
 
   document.querySelectorAll('.section-content').forEach(el => el.classList.add('hidden'));
 
@@ -651,6 +651,22 @@ data-section="kehadiran">
   });
 
   const section = document.getElementById('section-' + sectionId);
+  if (section) {
+    section.classList.remove('hidden');
+    section.classList.add('animate-slide-up');
+  }
+
+  const navBtn = document.querySelector(`[data-section="${sectionId}"]`);
+  if (navBtn) {
+    navBtn.classList.add('active', 'text-yellow-400');
+    navBtn.classList.remove('text-gray-300');
+  }
+
+  if(sectionId === "laporan"){
+    loadLaporan();
+  }
+}
+  /*const section = document.getElementById('section-' + sectionId);
   if (section) {
     section.classList.remove('hidden');
     section.classList.add('animate-slide-up');
@@ -680,7 +696,7 @@ data-section="kehadiran">
         navBtn.classList.remove('text-gray-300');
       }
     }
-
+*/
     function setDefaultDate(id) {
       const today = new Date().toISOString().split('T')[0];
       const el = document.getElementById(id);
