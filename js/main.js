@@ -278,10 +278,10 @@ async function loadLaporan(){
   try{
 
     // FETCH BOTH SHEETS
-    const [muridRes, guruRes] = await Promise.all([
-      fetch(`${SHEET_URL}?sheet=rmtMurid`),
-      fetch(`${SHEET_URL}?sheet=rmtGuru`)
-    ]);
+   const [muridRes, guruRes] = await Promise.all([
+  fetch(`${SHEET_URL}?sheet=laporanRMTMurid`),
+  fetch(`${SHEET_URL}?sheet=laporanRMTGuru`)
+]);;
 
     const muridJson = await muridRes.json();
     const guruJson = await guruRes.json();
