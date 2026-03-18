@@ -266,14 +266,14 @@ document.getElementById("guru-form")?.addEventListener("submit", async function(
 });
 
 // ================================
-// RMT Laporan – Murid + Guru (Fixed)
+// RMT Laporan – Murid + Guru (Fixed Definitive)
 // ================================
 
-// Cache sheets data
+// Cache the data to avoid losing it
 let cachedRMTMurid = [];
 let cachedRMTGuru = [];
 
-// Load both sheets ONCE and cache
+// Fetch RMT data once
 async function loadRMTData() {
   const container = document.getElementById("laporan-container");
   if (!container) return;
@@ -292,14 +292,14 @@ async function loadRMTData() {
     cachedRMTMurid = muridJson.result === "success" ? muridJson.data.slice(1) : [];
     cachedRMTGuru = guruJson.result === "success" ? guruJson.data.slice(1) : [];
 
-    renderRMT("semua"); // show all by default
+    renderRMT("semua"); // Show all by default
   } catch (err) {
     console.error(err);
     container.innerHTML = "Gagal memuatkan laporan";
   }
 }
 
-// Render function with type filter
+// Render RMT by type
 function renderRMT(type) {
   const container = document.getElementById("laporan-container");
   if (!container) return;
@@ -309,7 +309,7 @@ function renderRMT(type) {
   if (type === "rmt-murid" || type === "semua") {
     cachedRMTMurid.forEach(row => {
       html += `
-        <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-murid">
+        <div class="glass-card rounded-xl p-5 mb-4 laporan-item">
           <p><strong>📌 Jenis:</strong> RMT Murid</p>
           <p><strong>📅 Tarikh:</strong> ${row[0]}</p>
           <p><strong>👨‍🏫 Guru:</strong> ${row[1]}</p>
@@ -324,7 +324,7 @@ function renderRMT(type) {
   if (type === "rmt-guru" || type === "semua") {
     cachedRMTGuru.forEach(row => {
       html += `
-        <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-guru">
+        <div class="glass-card rounded-xl p-5 mb-4 laporan-item">
           <p><strong>📌 Jenis:</strong> RMT Guru</p>
           <p><strong>📅 Tarikh:</strong> ${row[0]}</p>
           <p><strong>👨‍🏫 Guru:</strong> ${row[1]}</p>
