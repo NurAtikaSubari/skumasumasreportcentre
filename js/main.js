@@ -266,16 +266,17 @@ document.getElementById("guru-form")?.addEventListener("submit", async function(
 });
 
 // ================================
-// RMT Laporan – Murid + Guru (Fixed Tab Switching)
+// RMT Laporan – Murid + Guru (Fixed)
 // ================================
 
+// Cache sheets data
 let cachedRMTMurid = [];
 let cachedRMTGuru = [];
 
-// Load both sheets and cache them
-async function loadLaporan() {
+// Load both sheets ONCE and cache
+async function loadRMTData() {
   const container = document.getElementById("laporan-container");
-  if(!container) return;
+  if (!container) return;
 
   container.innerHTML = "Memuatkan laporan...";
 
@@ -291,22 +292,21 @@ async function loadLaporan() {
     cachedRMTMurid = muridJson.result === "success" ? muridJson.data.slice(1) : [];
     cachedRMTGuru = guruJson.result === "success" ? guruJson.data.slice(1) : [];
 
-    renderLaporan("semua"); // initially show all
-  } catch(err) {
+    renderRMT("semua"); // show all by default
+  } catch (err) {
     console.error(err);
     container.innerHTML = "Gagal memuatkan laporan";
   }
 }
 
-// Render function for tabs
-function renderLaporan(type) {
+// Render function with type filter
+function renderRMT(type) {
   const container = document.getElementById("laporan-container");
-  if(!container) return;
+  if (!container) return;
 
   let html = "";
 
-  // RMT Murid
-  if(type === "rmt-murid" || type === "semua") {
+  if (type === "rmt-murid" || type === "semua") {
     cachedRMTMurid.forEach(row => {
       html += `
         <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-murid">
@@ -321,8 +321,7 @@ function renderLaporan(type) {
     });
   }
 
-  // RMT Guru
-  if(type === "rmt-guru" || type === "semua") {
+  if (type === "rmt-guru" || type === "semua") {
     cachedRMTGuru.forEach(row => {
       html += `
         <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-guru">
@@ -337,18 +336,18 @@ function renderLaporan(type) {
     });
   }
 
-  if(html === "") html = "Tiada laporan ditemui";
+  if (html === "") html = "Tiada laporan ditemui";
 
   container.innerHTML = html;
 }
 
 // Tab buttons
-document.getElementById("tab-semua")?.addEventListener("click", () => renderLaporan("semua"));
-document.getElementById("tab-rmt-murid")?.addEventListener("click", () => renderLaporan("rmt-murid"));
-document.getElementById("tab-rmt-guru")?.addEventListener("click", () => renderLaporan("rmt-guru"));
+document.getElementById("tab-semua")?.addEventListener("click", () => renderRMT("semua"));
+document.getElementById("tab-rmt-murid")?.addEventListener("click", () => renderRMT("rmt-murid"));
+document.getElementById("tab-rmt-guru")?.addEventListener("click", () => renderRMT("rmt-guru"));
 
-// Initial load
-loadLaporan();
+// INITIAL LOAD
+loadRMTData();
 
 // ================================
 // 6️⃣ Borang Perjumpaan Mingguan
