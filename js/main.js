@@ -266,6 +266,88 @@ document.getElementById("guru-form")?.addEventListener("submit", async function(
 });
 
 // ================================
+// LOAD SEMUA LAPORAN (RMT MURID + RMT GURU)
+// ================================
+async function loadLaporan(){
+
+  const container = document.getElementById("laporan-container");
+  if(!container) return;
+
+  container.innerHTML = "Memuatkan laporan...";
+
+  try{
+
+    // FETCH BOTH SHEETS
+    const [muridRes, guruRes] = await Promise.all([
+      fetch(`${SHEET_URL}?sheet=rmtMurid`),
+      fetch(`${SHEET_URL}?sheet=rmtGuru`)
+    ]);
+
+    const muridJson = await muridRes.json();
+    const guruJson = await guruRes.json();
+
+    let html = "";
+
+    // ======================
+    // RMT MURID
+    // ======================
+    if(muridJson.result === "success" && muridJson.data.length > 1){
+
+      for(let i = 1; i < muridJson.data.length; i++){
+
+        const row = muridJson.data[i];
+
+        html += `
+          <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-murid">
+            <p><strong>📌 Jenis:</strong> RMT Murid</p>
+            <p><strong>📅 Tarikh:</strong> ${row[0]}</p>
+            <p><strong>👨‍🏫 Guru:</strong> ${row[1]}</p>
+            <p><strong>🍚 Menu:</strong> ${row[2]}</p>
+            <p><strong>🍎 Buah:</strong> ${row[3]}</p>
+            <p><strong>💭 Ulasan:</strong> ${row[4] || "-"}</p>
+          </div>
+        `;
+      }
+    }
+
+    // ======================
+    // RMT GURU
+    // ======================
+    if(guruJson.result === "success" && guruJson.data.length > 1){
+
+      for(let i = 1; i < guruJson.data.length; i++){
+
+        const row = guruJson.data[i];
+
+        html += `
+          <div class="glass-card rounded-xl p-5 mb-4 laporan-item" data-type="rmt-guru">
+            <p><strong>📌 Jenis:</strong> RMT Guru</p>
+            <p><strong>📅 Tarikh:</strong> ${row[0]}</p>
+            <p><strong>👨‍🏫 Guru:</strong> ${row[1]}</p>
+            <p><strong>👥 Jumlah:</strong> ${row[2]}</p>
+            <p><strong>🏫 Kelas:</strong> ${row[3]}</p>
+            <p><strong>💭 Ulasan:</strong> ${row[4] || "-"}</p>
+          </div>
+        `;
+      }
+    }
+
+    // ======================
+    // EMPTY STATE
+    // ======================
+    if(html === ""){
+      html = "Tiada laporan ditemui";
+    }
+
+    container.innerHTML = html;
+
+  } catch(err){
+    console.error(err);
+    container.innerHTML = "Gagal memuatkan laporan";
+  }
+}
+
+// ================================
 // 6️⃣ Borang Perjumpaan Mingguan
 // ================================
 document.getElementById("meetingForm")?.addEventListener("submit", async function(e){
