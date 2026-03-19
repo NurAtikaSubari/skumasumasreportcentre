@@ -437,6 +437,46 @@ document.getElementById("meetingForm")?.addEventListener("submit", async functio
 
 });
 
+async function loadPerjumpaanMingguan() {
+  const container = document.getElementById("meeting-report-container");
+  if (!container) return;
+
+  container.innerHTML = "Memuatkan laporan...";
+
+  try {
+    const res = await fetch(`${SHEET_URL}?sheet=perjumpaanMingguan`);
+    const json = await res.json();
+
+    if (json.result !== "success") {
+      container.innerHTML = "Gagal load data";
+      return;
+    }
+
+    const rows = json.data.slice(1);
+
+    let html = "";
+
+    rows.forEach(row => {
+      html += `
+        <div class="glass-card p-5 mb-4 rounded-xl">
+          <p><strong>📅 Tarikh:</strong> ${row[1]}</p>
+          <p><strong>📍 Tempat:</strong> ${row[2]}</p>
+          <p><strong>👨‍🏫 Guru:</strong> ${row[8]}</p>
+          <p><strong>📘 Tajuk:</strong> ${row[9]}</p>
+          <p><strong>📝 Aktiviti:</strong> ${row[11]}</p>
+          <p><strong>💭 Refleksi:</strong> ${row[12]}</p>
+        </div>
+      `;
+    });
+
+    container.innerHTML = html || "Tiada laporan";
+
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "Ralat loading";
+  }
+}
+
 // ================================
 // 2️⃣ Kehadiran Kokurikulum Form
 // ================================
